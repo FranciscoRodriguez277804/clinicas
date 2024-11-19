@@ -1,0 +1,373 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ClinicaEspacioAbiertoFrontEnd.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ClinicaEspacioAbiertoFrontEnd.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\Asiste.png",
+      "PackagePath": "staticwebassets\\assets\\Asiste.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\Logo-Header-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\Logo-Header-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\No asiste.png",
+      "PackagePath": "staticwebassets\\assets\\No asiste.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\WhatsApp.jpg",
+      "PackagePath": "staticwebassets\\assets\\WhatsApp.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\check-circle.png",
+      "PackagePath": "staticwebassets\\assets\\check-circle.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\editNote.png",
+      "PackagePath": "staticwebassets\\assets\\editNote.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\fondoLogin.jpg",
+      "PackagePath": "staticwebassets\\assets\\fondoLogin.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\foto-perfil-generica.jpg",
+      "PackagePath": "staticwebassets\\assets\\foto-perfil-generica.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\loading.gif",
+      "PackagePath": "staticwebassets\\assets\\loading.gif"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\assets\\x-circle.png",
+      "PackagePath": "staticwebassets\\assets\\x-circle.png"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\AgregarConsultasStyles.css",
+      "PackagePath": "staticwebassets\\css\\AgregarConsultasStyles.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\ConfirmacionPago.css",
+      "PackagePath": "staticwebassets\\css\\ConfirmacionPago.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\Consultas\\5Consultas.css",
+      "PackagePath": "staticwebassets\\css\\Consultas\\5Consultas.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\Consultas\\PasarAsistenciasDelDia.css",
+      "PackagePath": "staticwebassets\\css\\Consultas\\PasarAsistenciasDelDia.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\Consultas\\agregarConsultaPartial.css",
+      "PackagePath": "staticwebassets\\css\\Consultas\\agregarConsultaPartial.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\EstilosTareasPendientes\\TareasPartialView.css",
+      "PackagePath": "staticwebassets\\css\\EstilosTareasPendientes\\TareasPartialView.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\ListadoUsuariosEstilo.css",
+      "PackagePath": "staticwebassets\\css\\ListadoUsuariosEstilo.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\listaConsultas.css",
+      "PackagePath": "staticwebassets\\css\\listaConsultas.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\css\\tareas.css",
+      "PackagePath": "staticwebassets\\css\\tareas.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\cancelarConsulta.js",
+      "PackagePath": "staticwebassets\\js\\cancelarConsulta.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\consultas.js",
+      "PackagePath": "staticwebassets\\js\\consultas.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\filtroxNombre.js",
+      "PackagePath": "staticwebassets\\js\\filtroxNombre.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\layout.js",
+      "PackagePath": "staticwebassets\\js\\layout.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\listaPorDia.js",
+      "PackagePath": "staticwebassets\\js\\listaPorDia.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\tareas.js",
+      "PackagePath": "staticwebassets\\js\\tareas.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\js\\usuarios.js",
+      "PackagePath": "staticwebassets\\js\\usuarios.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ClinicaEspacioAbiertoFrontEnd.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ClinicaEspacioAbiertoFrontEnd.props",
+      "PackagePath": "build\\ClinicaEspacioAbiertoFrontEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ClinicaEspacioAbiertoFrontEnd.props",
+      "PackagePath": "buildMultiTargeting\\ClinicaEspacioAbiertoFrontEnd.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ClinicaEspacioAbiertoFrontEnd.props",
+      "PackagePath": "buildTransitive\\ClinicaEspacioAbiertoFrontEnd.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

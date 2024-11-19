@@ -1,0 +1,293 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel
+
+
+
+        <div class="text-center justify-content-center">
+        <form method="post" asp-action="AgregarConsultaPartial" asp-controller="Consultas" id="form-Consultas">
+            <input type="hidden" id="hora" name="Hora" value="@Model.Hora_inicio" />
+            <input type="hidden" id="consultorio" name="Consultorio" value="@Model.n_consultorio" />
+            <input type="hidden" id="idUsuario" name="ID_Usuario" />
+
+        <div class="form-group">
+            <label for="buscadorTecnico">Buscar técnico</label>
+            <input type="text" class="form-control" id="buscadorTecnico" name="Nombre_empleado" value="@Model.Nombre_empleado" placeholder="Buscar técnico..." />
+        </div>
+        <div id="sugerenciasTecnico" class="suggestions-container mt-1"></div>
+
+            <div class="form-group">
+                <label for="buscadorUsuario">Buscar usuario</label>
+                <input type="text" class="form-control" id="buscadorUsuario" name="NombreUsuario" placeholder="Buscar usuario..." />
+            </div>
+            <div id="sugerenciasUsuario" class="suggestions-container mt-1"></div>
+
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de consulta</label>
+                <input type="date" class="form-control" id="fechaInicio" name="Fecha_Consulta" value="@Model.Fecha_Consulta?.ToString("yyyy-MM-dd")" />
+            </div>
+
+            <div class="form-group">
+                <label for="Dia">Día de la semana</label>
+                <select id="Dia" name="Dia" class="form-control">
+                <option value="@Model.">@Model.Dia</option>
+                    <option value="Lunes">Lunes</option>
+                    <option value="Martes">Martes</option>
+                    <option value="Miercoles">Miércoles</option>
+                    <option value="Jueves">Jueves</option>
+                    <option value="Viernes">Viernes</option>
+                    <option value="Sabado">Sábado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="horaInicio">Hora de inicio de consulta</label>
+                <input type="time" class="form-control" id="horaInicio" name="Hora_Inicio" value="@Model.Hora_inicio" />
+            </div>
+
+            <div class="form-group">
+                <label for="horaFin">Hora de finalización de consulta</label>
+            <input type="time" class="form-control" id="Hora_fin" name="Hora_fin" value="@Model.Hora_fin" />
+            </div>
+
+            <div class="form-group">
+                <label for="convenio">Convenio</label>
+                <select id="convenio" name="Convenio" class="form-control">
+                    <option value="">Seleccione un convenio</option>
+                    <option value="Ayex">Ayex</option>
+                    <option value="Hospital Policial">Hospital Policial</option>
+                    <option value="Huella">Huella</option>
+                    <option value="INIA">INIA</option>
+                    <option value="SUNCA">SUNCA</option>
+                    <option value="Hospital Militar">Hospital Militar</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="sucursalSelect">Sucursal</label>
+                <select id="sucursalSelect" name="Sucursal" class="form-control">
+                    <option value="@Model.Sucursal" selected>@Model.Sucursal</option>
+                    <option value="Anexo">Anexo</option>
+                    <option value="Varela">Varela</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numeroConsultorio">Número de consultorio</label>
+                <input type="number" class="form-control" id="numeroConsultorio" name="n_consultorio" value="@Model.n_consultorio" />
+            </div>
+
+            <div class="form-group">
+                <label for="servicio">Servicio</label>
+                <input type="text" class="form-control" id="servicio" name="Servicio" />
+            </div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">Agregar Consulta</button>
+        </form>
+    </div>
+
+
+<style>
+    .suggestions-container {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        width: 100%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        margin-top: -10px; /* para alinearlo con el input */
+    }
+
+    .suggestion-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 8px 12px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .suggestion-btn:hover {
+            background-color: #f1f1f1;
+        }
+
+    
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .form-group{
+        width:100%;
+        margin:1px;
+        justify-content:center;
+    }
+
+</style>
+
+<script>
+    document.getElementById("form-Consultas").addEventListener("submit", function (event) {
+        // Evita el envío normal del formulario
+        event.preventDefault();
+
+        // Muestra el loader
+        mostrarLoader();
+        // Desactiva el botón para evitar múltiples submits
+        document.getElementById("submitBtn").disabled = true;
+
+        // Crear un objeto FormData para enviar el formulario
+        const formData = new FormData(this);
+
+        // Hacer una petición AJAX
+        fetch(this.action, {
+            method: "POST",
+            body: formData,
+        })
+            .then(response => {
+                // Aquí puedes manejar la respuesta
+                if (response.ok) {
+                    // Redirigir o mostrar un mensaje de éxito
+                    alert("Consulta agregada correctamente");
+                    mostrarPopup('Consulta agregada correctamente', true);
+                } else {
+                    // Manejar errores
+                    mostrarPopup('Hubo un problema al agregar la consulta.', false);
+
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Ocurrió un error inesperado.");
+            })
+            .finally(() => {
+                // Ocultar el loader y volver a habilitar el botón
+                ocultarLoader();
+                document.getElementById("submitBtn").disabled = false;
+            });
+    });
+
+
+    function mostrarLoader() {
+        document.getElementById('loaderOverlay').style.visibility = 'visible'; // Mostrar el loader
+    }
+
+    function ocultarLoader() {
+        document.getElementById('loaderOverlay').style.visibility = 'hidden'; // Ocultar el loader
+    }
+    $('#buscadorTecnico').on('input', function () {
+        var term = $(this).val().trim();
+
+        if (term.length > 1) {
+            $.ajax({
+                url: '/Consultas/BuscarTecnico',
+                data: { term: term },
+                success: function (data) {
+                    displayTechnicianSuggestions(data);
+                },
+                error: function () {
+                    console.error('Error al buscar técnico');
+                }
+            });
+        } else {
+            $('#sugerenciasTecnico').empty();
+        }
+    });
+
+    $('#buscadorUsuario').on('input', function () {
+        var term = $(this).val().trim();
+
+        if (term.length > 1) {
+            $.ajax({
+                url: '/Consultas/BuscarUsuario',
+                data: { term: term },
+                success: function (data) {
+                    displayUserSuggestions(data);
+                },
+                error: function () {
+                    console.error('Error al buscar usuario');
+                }
+            });
+        } else {
+            $('#sugerenciasUsuario').empty();
+        }
+    });
+
+    function displayTechnicianSuggestions(suggestions) {
+        var $suggestionsContainer = $('#sugerenciasTecnico');
+        $suggestionsContainer.empty();
+
+        suggestions.forEach(function (item) {
+            var primerNombre = item.primerNombre;
+            var primerApellido = item.primerApellido;
+            var id = item.id;
+
+            if (!primerNombre || !primerApellido || !id) {
+                console.error("La estructura del objeto técnico no es la esperada:", item);
+                return;
+            }
+
+            var suggestion = $("<button></button>")
+                .addClass("btn-sm suggestion-btn btn-light")
+                .text(primerNombre + " " + primerApellido)
+                .attr("data-id", id);
+
+            suggestion.on("click", function () {
+                $('#buscadorTecnico').val(primerNombre + " " + primerApellido);
+                $('#buscadorTecnico').attr("data-id", id);
+                $suggestionsContainer.empty();
+            });
+
+            $suggestionsContainer.append(suggestion);
+        });
+    }
+
+    function displayUserSuggestions(suggestions) {
+        var $suggestionsContainer = $('#sugerenciasUsuario');
+        $suggestionsContainer.empty();
+
+        suggestions.forEach(function (item) {
+            var primerNombre = item.primerNombre;
+            var primerApellido = item.primerApellido;
+            var id = item.id;
+
+            if (!primerNombre || !primerApellido || !id) {
+                console.error("La estructura del objeto usuario no es la esperada:", item);
+                return;
+            }
+
+            var suggestion = $("<button></button>")
+                .addClass("btn-sm suggestion-btn btn-light")
+                .text(primerNombre + " " + primerApellido)
+                .attr("data-id", id);
+
+            suggestion.on("click", function () {
+                $('#buscadorUsuario').val(primerNombre + " " + primerApellido);
+                $('#buscadorUsuario').attr("data-id", id);
+                $suggestionsContainer.empty();
+            });
+
+            $suggestionsContainer.append(suggestion);
+        });
+
+    }
+    flatpickr("#horaInicio", {
+        enableTime: true,
+        noCalendar: true,
+        time_24hr: true,
+        dateFormat: "H:i",
+        locale: "es"
+    });
+
+    flatpickr("#Hora_fin", {
+        enableTime: true,
+        noCalendar: true,
+        time_24hr: true,
+        dateFormat: "H:i",
+        locale: "es"
+    });
+                </script>

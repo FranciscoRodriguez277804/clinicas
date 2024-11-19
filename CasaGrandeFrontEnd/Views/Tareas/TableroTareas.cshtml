@@ -1,0 +1,584 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.TareasModel>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    .modal-content{
+        width:100%;
+    }
+
+
+    .kanban-section {
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        width: 100%; /* Asegura que la sección ocupe todo el ancho */
+        height: 100%; /* Asegura que la altura sea la esperada */
+        align-items: center;
+    }
+
+
+    .kanban-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .kanban-explanation {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .kanban-board {
+        display: flex;
+        overflow-x: auto; /* Habilita el scroll horizontal si hay desbordamiento */
+        width: 100%; /* Asegura que el tablero ocupe todo el ancho */
+        margin:10px;
+        -webkit-overflow-scrolling: touch; /* Soporte para desplazamiento suave en iOS */
+    }
+
+
+    .kanban-column {
+       
+    }
+
+    .card {
+        cursor: grab;
+        margin-bottom: 10px;
+    }
+
+    .dragging {
+        opacity: 0.5;
+    }
+    .kanban-column {
+        min-height: 100vh;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: rgb(174, 247, 228);
+        border-radius: 8px;
+        border: 1px solid rgb(157, 222, 205);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        text-align:center;
+        position: relative;
+        overflow: hidden; /* Asegura que el contenido no se desborde */
+    }
+
+        .kanban-column h2 {
+            text-align: center;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+    .bg-c-blue {
+        background: linear-gradient(45deg,#4099ff,#73b4ff);
+    }
+
+    .bg-c-green {
+        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+    }
+
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }
+
+    .postit {
+        border-radius: 5px;
+        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        border: none;
+        margin-bottom: 20px;
+        transition: all 0.3s ease-in-out;
+        text-align:initial;
+        width: 100%;
+        
+    }
+
+    .postit{
+        overflow: hidden; /* Asegura que el contenido de la tarjeta no se desborde */
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        color: #333;
+        max-width: 100%;
+        min-width: 100%;
+        font-family: "Playpen Sans", cursive;
+    }
+
+
+    .order-card i {
+        font-size: 26px;
+    }
+
+    .f-left {
+        float: left;
+    }
+
+    .f-right {
+        float: right;
+    }
+
+    .suggestion-item {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+</style>
+<div>
+<div class="kanban-title">Tablero Kanban</div>
+<div class="kanban-explanation">
+    Mueve las tareas entre las columnas para cambiar su estado. Puedes arrastrar y soltar las tareas en las diferentes columnas para actualizarlas.
+</div>
+<button type="button" class="btn btn-primary col-4 boton-agregar justify-content-center m-3" data-toggle="modal" data-target="#modalAgregarTarea">Agregar tarea</button>
+<div class="kanban-section container-fluid justify-content-center d-md-block">
+    <div class="kanban-board row overflow-auto justify-content-center">
+            <div class="kanban-column col-md-3 col-5" id="solicitada-column" data-estado="Solicitada">
+            <h2>Solicitada</h2>
+            @foreach (var tarea in Model.Where(t => t.Estado == "Solicitada"))
+            {
+                <div class="card postit bg-c-blue order-card solicitada" draggable="true" id="tarea-@tarea.ID_Tarea" data-idtarea="@tarea.ID_Tarea">
+                    <form asp-action="EliminarTarea" method="post" class="eliminar-tarea-form" data-id="@tarea.ID_Tarea">
+                        <input type="hidden" name="id" value="@tarea.ID_Tarea" />
+                        <button type="submit" class="borrar-tarea btn btn-Tarea ">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="15" height="15" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 7l16 0" />
+                                <path d="M10 11l0 6" />
+                                <path d="M14 11l0 6" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+                    </form>
+                    
+                    <div class="card-block">
+                        <h6 class="m-b-20">@tarea.Titulo</h6>
+                        <p class="text-right"><i class="fa  f-left"></i><span>@tarea.Fecha_Inicio.ToString("yyyy-MM-dd")</span></p>
+                        <p>@tarea.Descripcion</p>
+                    </div>
+                </div>
+            }
+        </div>
+            <div class="kanban-column col-md-3 col-5 " id="pendiente-column" data-estado="Pendiente">
+            <h2>Pendiente</h2>
+            @foreach (var tarea in Model.Where(t => t.Estado == "Pendiente"))
+            {
+                <div class="card postit bg-c-yellow order-card pendiente" draggable="true" id="tarea-@tarea.ID_Tarea" data-idtarea="@tarea.ID_Tarea">
+                    <form asp-action="EliminarTarea" method="post" class="eliminar-tarea-form" data-id="@tarea.ID_Tarea">
+                        <input type="hidden" name="id" value="@tarea.ID_Tarea" />
+                        <button type="submit" class="borrar-tarea btn btn-Tarea ">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="15" height="15" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 7l16 0" />
+                                <path d="M10 11l0 6" />
+                                <path d="M14 11l0 6" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="card-block">
+                        <h6 class="m-b-20">@tarea.Titulo</h6>
+                        <p class="text-right"><i class="fa  f-left"></i><span>@tarea.Fecha_Inicio.ToString("yyyy-MM-dd")</span></p>
+                        <p>@tarea.Descripcion</p>
+                    </div>
+                </div>
+            }
+        </div>
+            <div class="kanban-column col-md-3 col-5 " id="finalizada-column" data-estado="Finalizada">
+            <h2>Finalizada</h2>
+            @foreach (var tarea in Model.Where(t => t.Estado == "Finalizada"))
+            {
+                <div class="card postit bg-c-green order-card finalizada" draggable="true" id="tarea-@tarea.ID_Tarea" data-idtarea="@tarea.ID_Tarea">
+                    <form asp-action="EliminarTarea" method="post" class="eliminar-tarea-form" data-id="@tarea.ID_Tarea">
+                        <input type="hidden" name="id" value="@tarea.ID_Tarea" />
+                        <button type="submit" class="borrar-tarea btn btn-Tarea ">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="15" height="15" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M4 7l16 0" />
+                                <path d="M10 11l0 6" />
+                                <path d="M14 11l0 6" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+                    </form>
+                    <div class="card-block">
+                        <h6 class="m-b-20">@tarea.Titulo</h6>
+                        <p class="text-right"><i class="fa  f-left"></i><span>@tarea.Fecha_Inicio.ToString("yyyy-MM-dd")</span></p>
+                        <p>@tarea.Descripcion</p>
+                    </div>
+                </div>
+            }
+        </div>
+            <div class="kanban-column col-md-3 col-5" id="cancelada-column" data-estado="Cancelada">
+            <h2>Cancelada</h2>
+            @foreach (var tarea in Model.Where(t => t.Estado == "Cancelada"))
+                if (tarea != null)
+                {
+                    {
+                        <div class="card postit bg-c-pink order-card cancelada" draggable="true" id="tarea-@tarea.ID_Tarea" data-idtarea="@tarea.ID_Tarea">
+                            <form asp-action="EliminarTarea" method="post" class="eliminar-tarea-form" data-id="@tarea.ID_Tarea">
+                                <input type="hidden" name="id" value="@tarea.ID_Tarea" />
+                                <button type="submit" class="borrar-tarea btn btn-Tarea">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="15" height="15" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M4 7l16 0" />
+                                        <path d="M10 11l0 6" />
+                                        <path d="M14 11l0 6" />
+                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                    </svg>
+                                </button>
+                            </form>
+                            <div class="card-block">
+                                <h6 class="m-b-20">@tarea.Titulo</h6>
+                                <p class="text-right"><i class="fa  f-left"></i><span>@tarea.Fecha_Inicio.ToString("yyyy-MM-dd")</span></p>
+                                <p>@tarea.Descripcion</p>
+                            </div>
+                        </div>
+                    }
+                }
+            
+        </div>
+    </div>
+    
+</div>
+   
+<!-- Modal para agregar tareas -->
+<div class="modal fade" id="modalAgregarTarea" tabindex="-1" role="dialog" aria-labelledby="modalAgregarTareaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarTareaLabel">Agregar Nueva Tarea</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAgregarTarea" asp-action="AgregarTarea" asp-controller="Tareas">
+                    <div class="form-group">
+                        <label for="titulo">Título</label>
+                        <input type="text" class="form-control" id="titulo" name="Titulo" placeholder="Ingrese el título de la tarea" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="Descripcion" rows="3" placeholder="Ingrese una descripción"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="fechaInicio" name="Fecha_Inicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha de Fin</label>
+                        <input type="date" class="form-control" id="fechaFin" name="Fecha_Fin" required>
+                    </div>
+                    <label>Asignar tarea a:</label><br>
+                    <input type="radio" id="paraMi" name="asignarTarea" value="mi" checked>
+                    <label for="paraMi">Para mí</label><br>
+                    <input type="radio" id="asignarOtroEmpleado" name="asignarTarea" value="otro">
+                    <label for="asignarOtroEmpleado">Para otro empleado</label>
+
+                    <!-- Contenedor para buscar empleados -->
+                    <div id="buscarEmpleadoContainer" style="display:none;">
+                        <label for="searchEmpleado">Buscar empleado:</label>
+                        <input type="text" id="searchEmpleado" name="searchEmpleado" placeholder="Escribe el nombre del empleado">
+                        <ul id="listaEmpleados" class="list-group"></ul>
+                    </div>
+                    <input type="hidden" id="empleadoSeleccionadoId" name="ID_EmpleadoSolicitado">
+                    <button type="submit" class="btn btn-primary mt-1">Guardar Tarea</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loader -->
+
+<div class="modal fade" id="modalTarea" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Tarea Confirmada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="tareasContainer">
+                <!-- Aquí se cargará la vista parcial -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const columns = document.querySelectorAll('.kanban-column');
+        let draggedTask = null;
+        let touchStartX, touchStartY;
+
+        document.querySelectorAll('.card').forEach(task => {
+            // Drag & Drop para escritorio
+            task.addEventListener('dragstart', function () {
+                draggedTask = this;
+                setTimeout(() => this.classList.add('dragging'), 0);
+            });
+
+            task.addEventListener('dragend', function () {
+                setTimeout(() => this.classList.remove('dragging'), 0);
+                draggedTask = null;
+            });
+
+            // Eventos para pantallas táctiles
+            task.addEventListener('touchstart', function (e) {
+                draggedTask = this;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                setTimeout(() => this.classList.add('dragging'), 0);
+            });
+
+            task.addEventListener('touchend', function (e) {
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+
+                // Descartar si no hay movimiento significativo
+                if (Math.abs(touchEndX - touchStartX) > 50 || Math.abs(touchEndY - touchStartY) > 50) {
+                    columns.forEach(column => {
+                        const rect = column.getBoundingClientRect();
+                        if (touchEndX >= rect.left && touchEndX <= rect.right && touchEndY >= rect.top && touchEndY <= rect.bottom) {
+                            column.querySelector('h2').insertAdjacentElement('afterend', draggedTask);
+                            const idTarea = draggedTask.getAttribute('data-idtarea');
+                            const nuevoEstado = column.getAttribute('data-estado');
+                            actualizarEstadoTarea(idTarea, nuevoEstado);
+                        }
+                    });
+                }
+                setTimeout(() => this.classList.remove('dragging'), 0);
+                draggedTask = null;
+            });
+                { passive: true }
+        });
+    
+
+            columns.forEach(column => {
+                column.addEventListener('dragover', e => e.preventDefault());
+
+                column.addEventListener('drop', function () {
+                    if (draggedTask) {
+                        this.querySelector('h2').insertAdjacentElement('afterend', draggedTask);
+                        const idTarea = draggedTask.getAttribute('data-idtarea');
+                        const nuevoEstado = this.getAttribute('data-estado');
+                        actualizarEstadoTarea(idTarea, nuevoEstado);
+                    }
+                });
+            });
+        });
+        
+
+        async function actualizarEstadoTarea(idTarea, nuevoEstado) {
+            try {
+                const response = await fetch('/Tareas/ActualizarEstadoTarea', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id_Tarea: idTarea, estado: nuevoEstado })
+                });
+
+                if (!response.ok) throw new Error('HTTP error! status: ' + response.status);
+
+                const result = await response.json();
+                if (result.success) {
+                    console.log('Estado de la tarea actualizado');
+                    mostrarMensaje('El estado de la tarea se ha actualizado correctamente.', 'success');
+                } else {
+                    console.error('Error al actualizar el estado de la tarea');
+                }
+            } catch (error) {
+                console.error('Error en la solicitud de actualización de estado:', error);
+            }
+        }
+        
+
+        // Función para mostrar mensajes temporales
+        function mostrarMensaje(mensaje, tipo) {
+            const mensajeDiv = document.createElement('div');
+            mensajeDiv.className = `mensaje ${tipo}`; // Puedes definir estilos para 'mensaje', 'success' y 'error'
+            mensajeDiv.textContent = mensaje;
+
+            document.body.appendChild(mensajeDiv);
+
+            // Eliminar el mensaje después de 3 segundos
+            setTimeout(() => {
+                mensajeDiv.remove();
+            }, 3000);
+        }
+        
+        $(document).ready(function () {
+            $('.eliminar-tarea-form').on('submit', function (e) {
+                e.preventDefault(); // Prevenir el envío normal del formulario
+
+                var $form = $(this); // Obtener el formulario
+                var tareaId = $form.data('id'); // Obtener el ID de la tarea
+
+                // Confirmación opcional
+                if (confirm('¿Estás seguro de que deseas finalizar esta tarea?')) {
+                    // Mostrar el loader
+                    $('#loader').css('visibility', 'visible');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: $form.attr('action'), // Usar la acción definida en el formulario
+                        data: $form.serialize(), // Serializar los datos del formulario
+                        success: function (response) {
+                            // Ocultar el loader
+                            $('#loader').css('visibility', 'hidden');
+
+                            if (response.success) {
+                                // Ocultar o eliminar la tarea del DOM
+                                $('#tarea-' + tareaId).fadeOut(function () {
+                                    $(this).remove(); // Remover el elemento del DOM después de ocultarlo
+                                });
+                            } else {
+                                alert('No se pudo eliminar la tarea. Intente nuevamente.');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            // Ocultar el loader
+                            $('#loader').css('visibility', 'hidden');
+
+                            console.error('Error al eliminar la tarea: ', error);
+                            alert('Ocurrió un error al eliminar la tarea. Por favor, intenta de nuevo.');
+                        }
+                    });
+                }
+            });
+        });
+        $(document).ready(function () {
+            // Mostrar el campo de búsqueda al hacer clic en "Para otro empleado"
+            $('#asignarOtroEmpleado').on('click', function () {
+                $('#buscarEmpleadoContainer').show(); // Mostrar el campo de búsqueda de empleados
+            });
+
+            // Ocultar el campo de búsqueda si seleccionan "Para mí"
+            $('#paraMi').on('click', function () {
+                $('#buscarEmpleadoContainer').hide(); // Ocultar el campo de búsqueda
+                $('#empleadoSeleccionadoId').val(''); // Limpiar el campo oculto del ID del empleado
+            });
+
+            // Asegurarse de que el campo de búsqueda esté oculto inicialmente si se selecciona "Para mí"
+            if ($('#paraMi').is(':checked')) {
+                $('#buscarEmpleadoContainer').hide(); // Ocultar por defecto
+            }
+
+            // Función para buscar empleados mientras se escribe
+            $('#searchEmpleado').on('keyup', function () {
+                var query = $(this).val().toLowerCase(); // Obtener el texto del input
+
+                if (query.length > 2) { // Hacer la búsqueda solo si se escriben más de 2 caracteres
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Tareas/BuscarEmpleados', // Cambiar por la ruta correcta
+                        timeout: 10000,
+                        data: { query: query },
+                        success: function (data) {
+                            if (data && Array.isArray(data)) {
+                                $('#listaEmpleados').empty(); // Limpiar la lista anterior
+                                data.forEach(function (empleado) {
+                                    console.log('Empleado ID:', empleado.ID); // Verificar el ID en la consola
+                                    $('#listaEmpleados').append(
+                                        '<li class="list-group-item empleado-item" data-id="' + empleado.id + '">' +
+                                        empleado.primerNombre + ' ' + empleado.primerApellido + '</li>'
+                                    );
+                                });
+                            } else {
+                                console.error('Formato de datos incorrecto:', data);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error en la búsqueda de empleados: ', error);
+                        }
+                    });
+                } else {
+                    $('#listaEmpleados').empty(); // Limpiar la lista si el input está vacío o tiene pocos caracteres
+                }
+            });
+
+            $('#listaEmpleados').on('click', '.empleado-item', function () {
+                var empleadoId = $(this).data('id');
+                var empleadoNombre = $(this).text();
+
+                // Verificar que el ID se esté obteniendo correctamente
+                console.log('Empleado seleccionado ID:', empleadoId); // Verificar ID aquí
+
+                // Colocar el nombre del empleado en el input de búsqueda
+                $('#searchEmpleado').val(empleadoNombre);
+
+                // Almacenar el ID del empleado en el campo oculto
+                $('#empleadoSeleccionadoId').val(empleadoId);
+
+                // Mostrar el valor almacenado en el campo oculto para depuración
+                console.log('ID del empleado almacenado:', $('#empleadoSeleccionadoId').val());
+
+                // Ocultar la lista de empleados después de la selección
+                $('#listaEmpleados').empty();
+            });
+
+            // Envío del formulario de agregar tarea
+            $('#formAgregarTarea').submit(function (e) {
+                e.preventDefault(); // Previene el comportamiento por defecto del formulario
+
+                // Mostrar el loader
+                $('#loaderOverlay').css('visibility', 'visible');
+
+                var formData = $(this).serialize(); // Serializa los datos del formulario
+
+                // Log para verificar que el ID se esté incluyendo en el formulario
+                console.log('Datos del formulario antes de enviar:', formData); // Ver datos aquí
+
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: formData,
+                        success: function (response) {
+                            // Ocultar el loader
+                            $('#loader').css('visibility', 'hidden');
+
+                            if (response.success) {
+                                // Ocultar o eliminar la tarea del DOM
+                                $('#tarea-' + tareaId).fadeOut(function () {
+                                    $(this).remove(); // Remover el elemento del DOM después de ocultarlo
+                                });
+                            } else {
+                                mostrarMensaje('No se pudo eliminar la tarea. Intente nuevamente.', 'error');
+                            }
+                        },
+                    error: function (xhr, status, error) {
+                        // Ocultar el loader
+                        $('#loaderOverlay').css('visibility', 'hidden');
+
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+</script>

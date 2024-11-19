@@ -1,0 +1,22 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Convenio
+
+<h1>@ViewBag.Titulo</h1>
+
+<!-- Render Convenio details -->
+<p>Nombre Convenio: @Model.nombre_convenio</p>
+<p>Area: @Model.area</p>
+<p>Estado: @Model.estado</p>
+<p>Fecha de inserción: @Model.insertdate</p>
+
+<!-- Users associated with the convenio -->
+<div>
+    <h2>Usuarios</h2>
+    @if (Model.usuarios!=null)
+    {
+        @Html.Partial("_tablaListaUsuariosConvenio", Model)
+    }
+    else
+    {
+        <p>No hay usuarios para el convenio</p>
+    }
+</div>

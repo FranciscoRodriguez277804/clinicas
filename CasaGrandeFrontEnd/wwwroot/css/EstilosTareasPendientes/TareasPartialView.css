@@ -1,0 +1,72 @@
+﻿
+
+
+.inicioCard {
+    padding: 22px 29px;
+    gap: 44px;
+    border-radius: 20px;
+    background-color: var(--colorBlanco);
+}
+
+.btn-Tarea {
+    margin: 5px;
+    padding: 5px;
+}
+.boton-agregar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size:14px;
+}
+
+    .boton-agregar:hover {
+        background-color: #218838;
+    }
+
+
+
+.fecha {
+    width: auto;
+    word-wrap: break-word; /* Permite el ajuste de palabras largas */
+    white-space: nowrap; /* Evita que el contenido se divida en múltiples líneas */
+}
+
+.modalTareasPendientes {
+    padding: 22px 29px;
+    gap: 44px;
+    border-radius: 20px;
+}
+
+.tableTareas th, .tableTareas td {
+    vertical-align: middle;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.tableTareas .badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+span{
+    text-decoration:none;
+}
+.btn-light {
+    border: none;
+    background-color: transparent;
+}
+
+    .btn-light:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+.modal-header {
+    border:none;
+}
+
+
+

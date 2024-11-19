@@ -1,0 +1,31 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ValueObjects.PaginacionViewModel<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Usuario>
+
+
+@{
+    ViewData["Title"] = "ListadoDeUsuarios";
+}
+<link href="~/css/ListadoUsuariosEstilo.css" rel="stylesheet" />
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-sm-8">
+        <input type="text" id="searchBox" placeholder="Buscar usuario..." class="form-control search-input mb-3" />
+    </div>
+</div>
+<div class="row justify-content-center align-items-center" id="userList" >
+    @await Html.PartialAsync("_ListadoUsuarios", Model);
+</div>
+<nav>
+    <ul class="pagination">
+        <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+            <a class="page-link" asp-action="ListadoDeUsuarios" asp-route-page="@(Model.Page - 1)">Anterior</a>
+        </li>
+        <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+            <a class="page-link" asp-action="ListadoDeUsuarios" asp-route-page="@(Model.Page + 1)">Siguiente</a>
+        </li>
+    </ul>
+</nav>
+<div id="detallesUsuario"></div>
+
+<script src="~/js/usuarios.js"></script>
+
+

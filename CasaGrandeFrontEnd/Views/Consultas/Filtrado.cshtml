@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    td a.linkAcciones {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        td a.linkAcciones:hover {
+            color: #0056b3;
+        }
+
+    .btn {
+        margin: 10px 0;
+    }
+
+    .time-pill {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: var(--colorAzul);
+        color: white;
+        border-radius: 15px;
+        font-weight: bold;
+    }
+
+</style>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Fecha consulta</th>
+            <th>Hora de inicio</th>
+            <th>Hora de fin</th>
+            <th>Nombre paciente</th>
+            <th>Nombre medico</th>
+            <th>Nro consultorio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var consulta in Model)
+        {
+            <tr>
+                <td>@consulta.Fecha_Consulta?.ToString("dd/MM/yyyy h:mm tt")</td>
+                <td><span class="time-pill">@consulta.Hora_inicio</span></td>
+                <td><span class="time-pill">@consulta.Hora_fin</span></td>
+                <td>@consulta.NombreUsuario</td>
+                <td>@consulta.Nombre_empleado</td>
+                <td>@consulta.n_consultorio</td>
+                <td>
+                    <div class="acciones">
+                        <a href="#" title="Ver" onclick="event.preventDefault();event.stopPropagation(); verDetalles(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                            </svg>
+                        </a>
+                        <a href="#" title="Editar" onclick="event.stopPropagation(); showEditForm('@consulta.ID')">
+                            <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.69794 2.28467H1.87117C1.58119 2.28467 1.30309 2.39986 1.09804 2.60491C0.892995 2.80995 0.777802 3.08805 0.777802 3.37803V11.0316C0.777802 11.3216 0.892995 11.5997 1.09804 11.8047C1.30309 12.0098 1.58119 12.125 1.87117 12.125H9.52472C9.8147 12.125 10.0928 12.0098 10.2978 11.8047C10.5029 11.5997 10.6181 11.3216 10.6181 11.0316V7.20481" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9.79806 1.46466C10.0155 1.24718 10.3105 1.125 10.6181 1.125C10.9257 1.125 11.2206 1.24718 11.4381 1.46466C11.6556 1.68215 11.7778 1.97712 11.7778 2.28469C11.7778 2.59226 11.6556 2.88723 11.4381 3.10471L6.24462 8.2982L4.05789 8.84488L4.60457 6.65815L9.79806 1.46466Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <a href="#" title="Agregar pago" onclick="event.stopPropagation(); addPago('@consulta.ID')">
+                            <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.88888 10.7778C6.07488 11.1579 5.00483 11.3889 3.83333 11.3889C3.18188 11.3889 2.56222 11.3174 1.99999 11.1891C1.63883 11.1059 1.45794 11.065 1.2416 10.8933C1.10003 10.7721 0.982848 10.625 0.896327 10.46C0.777771 10.2113 0.777771 9.96928 0.777771 9.48589V2.903C0.777771 2.30106 1.41333 1.88794 1.99999 2.02239C2.56222 2.15072 3.18188 2.22222 3.83333 2.22222C5.00483 2.22222 6.07488 1.99122 6.88888 1.61111C7.70288 1.231 8.77294 1 9.94444 1C10.5959 1 11.2155 1.0715 11.7778 1.19983C12.1389 1.28294 12.3198 1.3245 12.5362 1.49561C12.6596 1.59339 12.8136 1.7865 12.8814 1.92889C13 2.17822 13 2.41961 13 2.903V6.19444M10.8611 12V7.72222M8.72222 9.86111H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M2.91664 6.80545V6.81095M8.41664 6.19434C8.41664 6.59953 8.25568 6.98813 7.96917 7.27464C7.68265 7.56116 7.29406 7.72212 6.88886 7.72212C6.48367 7.72212 6.09508 7.56116 5.80856 7.27464C5.52205 6.98813 5.36109 6.59953 5.36109 6.19434C5.36109 5.78915 5.52205 5.40055 5.80856 5.11404C6.09508 4.82753 6.48367 4.66656 6.88886 4.66656C7.29406 4.66656 7.68265 4.82753 7.96917 5.11404C8.25568 5.40055 8.41664 5.78915 8.41664 6.19434Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </a>
+
+                    </div>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

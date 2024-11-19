@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Próximas consultas del día</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Consultorio</th>
+                    <th>Hora de inicio</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var consulta in Model)
+                {
+                    <tr>
+                        <td>@consulta.NombreUsuario</td>
+                        <td>@consulta.n_consultorio</td>
+                        <td>@consulta.Hora_inicio</td>
+                        <td><a @consulta.ID>
+                            Abrir consulta
+                        </a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

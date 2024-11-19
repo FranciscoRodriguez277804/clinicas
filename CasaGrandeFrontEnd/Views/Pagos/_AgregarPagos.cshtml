@@ -1,0 +1,167 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Pagos
+
+
+    <form id="pagoForm" class="col-12 mt-2" method="post" asp-action="AgregarPagos" asp-controller="Pagos">
+        <!-- Campos visibles pero no editables -->
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Nombre del Usuario:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.nombre_Usuario</p>
+            </div>
+        </div>
+        <input type="hidden" asp-for="nombre_Usuario" value="@Model.nombre_Usuario" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Nombre del Empleado:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.nombre_Empleado</p>
+            </div>
+        </div>
+        <input type="hidden" name="nombre_Empleado" value="@Model.nombre_Empleado" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Fecha de Consulta:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.fecha_consulta</p>
+            </div>
+        </div>
+        <input type="hidden" name="fecha_consulta" value="@Model.fecha_consulta.ToString("yyyy-MM-dd")" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Hora de inicio:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.Hora_inicio</p>
+            </div>
+        </div>
+        <input type="hidden" name="Hora_inicio" value="@Model.Hora_inicio" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Hora de finalización:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.Hora_Fin</p>
+            </div>
+        </div>
+        <input type="hidden" name="Hora_Fin" value="@Model.Hora_Fin" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Convenio:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.convenio</p>
+            </div>
+        </div>
+        <input type="hidden" name="convenio" value="@Model.convenio" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Sucursal:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.sucursalSesion</p>
+            </div>
+        </div>
+        <input type="hidden" name="sucursalSesion" value="@Model.sucursalSesion" />
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"><strong>Estado:</strong></label>
+            <div class="col-sm-6">
+                <p class="form-control-plaintext">@Model.estado</p>
+            </div>
+        </div>
+        <input type="hidden" name="estado" value="@Model.estado" />
+
+        <!-- Campos editables -->
+        <div class="form-group row">
+            <label for="fechaPago" class="col-sm-6 col-form-label">Fecha de Pago:</label>
+            <div class="col-sm-6">
+                <input type="date" id="fechaPago" class="form-control" asp-for="fecha_pago" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="metodoPago" class="col-sm-6 col-form-label">Método de Pago:</label>
+            <div class="col-sm-6">
+                <select id="metodoPago" class="form-control" asp-for="Tipo.NombreTipo">
+                    <option value="">Seleccione un método</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Transferencia">Transferencia</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="Importe" class="col-sm-6 col-form-label">Monto de Pago:</label>
+            <div class="col-sm-6">
+                <input type="number" id="Importe" class="form-control" asp-for="Importe" />
+            </div>
+        </div>
+
+        <!-- Campos ocultos adicionales -->
+        <input type="hidden" asp-for="id_consulta" />
+        <input type="hidden" asp-for="insertdate" />
+        <input type="hidden" asp-for="idUsuario" />
+
+        <div class="form-group row">
+            <div class="col-sm-9 offset-sm-3">
+                <button type="submit" id="btnEnviar" class="btn btn-success btn-block">Generar Factura</button>
+            </div>
+        </div>
+    </form>
+
+<div id="facturacionModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="col-12"><strong>Detalles del pago</strong></h4>
+            <span class="close">&times;</span>
+        </div>
+        
+        <div class="mt-2" id="modalBody"></div>
+    </div>
+</div>
+<div id="loader" class="loader" style="display: none;">
+    <div>
+        <img src="~/assets/loading.gif" />
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#pagoForm').on('submit', function (e) {
+            e.preventDefault();
+
+            // Mostrar el ícono de carga
+            document.getElementById('loaderOverlay').style.visibility = 'visible'; // Mostrar el loader
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: formData,
+                success: function (response) {
+                    // Ocultar el ícono de carga
+                    document.getElementById('loaderOverlay').style.visibility = 'hide'; // Mostrar el loader
+
+                    // Mostrar el modal con la respuesta del servidor
+                    $('#modalBody').html(response);
+                    $('#facturacionModal').show();
+                },
+                error: function (xhr, status, error) {
+                    // Ocultar el ícono de carga
+                    $('#loader').hide();
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        });
+
+        $('.modal .close').on('click', function () {
+            $('#facturacionModal').hide();
+        });
+
+        $(window).on('click', function (event) {
+            if ($(event.target).is('#facturacionModal')) {
+                $('#facturacionModal').hide();
+            }
+        });
+    });
+</script>
+
+<link rel="stylesheet" href="~/css/listaConsultas.css">

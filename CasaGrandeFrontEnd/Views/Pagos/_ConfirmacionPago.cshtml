@@ -1,0 +1,49 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ValueObjects.ConfirmacionPagoViewModel
+<style>
+    .botonFactura {
+        color:black;
+        backgrund-color:rgb(179, 215, 215);
+        border:1px solid black;
+        padding:15px;
+
+
+    }
+    button{
+        background-color:white;
+        color:black;
+        border:1px solid black;
+    }
+</style>
+<link rel="stylesheet" href="~/css/ConfirmacionPago.css">
+<div class="confirmacion container-fluid m-2 row">
+    <h2 class="col-12">@Model.Mensaje</h2>
+    
+    <p><strong>Nombre de usuario: </strong>@Model.pago.nombre_Usuario</p>
+    <p><strong>Fecha de pago: </strong>@Model.pago.fecha_pago</p>
+    <p><strong>Monto de pago: </strong>@Model.pago.Importe</p><br />
+    <a class="col-4 botonFactura"href="data:application/pdf;base64,@Model.PdfBase64" download="FacturaPago.pdf">Descargar PDF</a>
+    <!-- Botón para confirmar -->
+    <button class="col-4 botonFactura" id="confirmarButton">Confirmar</button>
+</div>
+
+<!-- Script para manejar la solicitud AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#confirmarButton').click(function () {
+            $.ajax({
+                url: '/Consultas/ListarConsultasPendientes', // URL de tu método en el controlador
+                type: 'GET', // o 'POST' según tu necesidad
+                success: function (result) {
+                    // Maneja la respuesta del servidor
+                    console.log("Consultas actualizadas correctamente");
+                    // Aquí puedes recargar la vista o hacer cualquier acción adicional
+                    location.reload(); // Refresca la vista
+                },
+                error: function (error) {
+                    console.error("Error al actualizar las consultas:", error);
+                }
+            });
+        });
+    });
+</script>

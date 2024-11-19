@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{39D231BC-7D3E-4E25-BB62-7D4D388206BC}|CasaGrandeFrontEnd\\ClinicaEspacioAbiertoFrontEnd.csproj|c:\\users\\usuario\\desktop\\proyecto clinicas\\code\\code\\espacioabiertofront\\espacioabiertofront\\espacioabiertofront\\casagrandefrontend\\views\\consultas\\pasarasistenciasdeldia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{39D231BC-7D3E-4E25-BB62-7D4D388206BC}|CasaGrandeFrontEnd\\ClinicaEspacioAbiertoFrontEnd.csproj|solutionrelative:casagrandefrontend\\views\\consultas\\pasarasistenciasdeldia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39D231BC-7D3E-4E25-BB62-7D4D388206BC}|CasaGrandeFrontEnd\\ClinicaEspacioAbiertoFrontEnd.csproj|c:\\users\\usuario\\desktop\\proyecto clinicas\\code\\code\\espacioabiertofront\\espacioabiertofront\\espacioabiertofront\\casagrandefrontend\\controllers\\consultas\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39D231BC-7D3E-4E25-BB62-7D4D388206BC}|CasaGrandeFrontEnd\\ClinicaEspacioAbiertoFrontEnd.csproj|solutionrelative:casagrandefrontend\\controllers\\consultas\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ConsultasController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\Controllers\\Consultas\\ConsultasController.cs",
+              "RelativeDocumentMoniker": "CasaGrandeFrontEnd\\Controllers\\Consultas\\ConsultasController.cs",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\Controllers\\Consultas\\ConsultasController.cs",
+              "RelativeToolTip": "CasaGrandeFrontEnd\\Controllers\\Consultas\\ConsultasController.cs",
+              "ViewState": "AgIAAHUDAAAAAAAAAAAkwAgEAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T16:47:56.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PasarAsistenciasDelDia.cshtml",
+              "DocumentMoniker": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\Views\\Consultas\\PasarAsistenciasDelDia.cshtml",
+              "RelativeDocumentMoniker": "CasaGrandeFrontEnd\\Views\\Consultas\\PasarAsistenciasDelDia.cshtml",
+              "ToolTip": "C:\\Users\\Usuario\\Desktop\\Proyecto clinicas\\Code\\Code\\EspacioAbiertoFront\\EspacioAbiertoFront\\EspacioAbiertoFront\\CasaGrandeFrontEnd\\Views\\Consultas\\PasarAsistenciasDelDia.cshtml",
+              "RelativeToolTip": "CasaGrandeFrontEnd\\Views\\Consultas\\PasarAsistenciasDelDia.cshtml",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAcwA4CAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-17T17:00:28.348Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
