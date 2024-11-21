@@ -260,6 +260,8 @@
 
 <script>
 
+    /*Abrir Modal Asistencias*/
+
     function abrirModalAsistencia(button) {
         var id = $(button).data('id');
         var asistenciaUsuario = $(button).data('asistencia-usuario');
@@ -280,96 +282,14 @@
         document.getElementById('loaderOverlay').style.visibility = 'hidden'; // Ocultar el loader
     }
 
-   @*  function guardarAsistencia() {
-        var formData = new FormData(document.getElementById('formAsistencia'));
-
-        mostrarLoader(); // Mostrar el loader al iniciar la petición
-
-        $.ajax({
-            url: '/Consultas/PasarAsistencia',
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                ocultarLoader(); // Ocultar el loader al terminar la petición
-                if (response.success) {
-                    toastr.success('Asistencia actualizada correctamente');
-                    $('#modalAsistencia').modal('hide');
-                    location.reload(); // Recargar la página para actualizar los datos
-                } else {
-                    toastr.error('Error al actualizar la asistencia: ' + response.message);
-                }
-            },
-            error: function (error) {
-                ocultarLoader(); // Ocultar el loader en caso de error
-                console.error('Error al actualizar la asistencia:', error);
-                toastr.error('Error al actualizar la asistencia.');
-            }
-        });
-    } *@
-
-   @*  function actualizarAsistenciaTecnico(id, tipo, estado) {
-        mostrarLoader(); // Mostrar el loader al iniciar la petición
-
-        $.ajax({
-            url: '/Consultas/PasarAsistencia',
-            type: 'POST',
-            data: {
-                id: id,
-                Asistencia_tecnicos_recepcion: estado
-            },
-            success: function (response) {
-                ocultarLoader(); // Ocultar el loader al terminar la petición
-                if (response.success) {
-                    toastr.success('Asistencia actualizada correctamente');
-                    $('#modalAsistencia').modal('hide');
-                    location.reload(); // Recargar la página para actualizar los datos
-                } else {
-                    toastr.error('Error al actualizar la asistencia: ' + response.message);
-                }
-            },
-            error: function (error) {
-                ocultarLoader(); // Ocultar el loader en caso de error
-                console.error('Error al actualizar la asistencia:', error);
-                toastr.error('Error al actualizar la asistencia.');
-            }
-        });
-    }
-
-    function actualizarAsistenciaUsuario(id, tipo, estado) {
-        mostrarLoader(); // Mostrar el loader al iniciar la petición
-
-        $.ajax({
-            url: '/Consultas/Consultas/lista?fecha={fechaConsulta:yyyy-MM-dd}',
-            type: 'POST',
-            data: {
-                id: id,
-                Asistencia_usuario_recepcion: estado
-            },
-            success: function (response) {
-                ocultarLoader(); // Ocultar el loader al terminar la petición
-                if (response.success) {
-                    toastr.success('Asistencia actualizada correctamente');
-                    $('#modalAsistencia').modal('hide');
-                    location.reload(); // Recargar la página para actualizar los datos
-                } else {
-                    toastr.error('Error al actualizar la asistencia: ' + response.message);
-                }
-            },
-            error: function (error) {
-                ocultarLoader(); // Ocultar el loader en caso de error
-                console.error('Error al actualizar la asistencia:', error);
-                toastr.error('Error al actualizar la asistencia.');
-            }
-        });
-    } *@
-
+ 
+    /*Cerrar Modal Asistencias*/
     function closeModalAsistencia() {
         var modal = document.getElementById("modalAsistencia");
         modal.style.display = "none";
     }
 
+    /*Filtro de busqueda por nombre*/
     document.getElementById("searchBox2").addEventListener("keyup", function () {
         var filter = this.value.toLowerCase();
         var users = document.querySelectorAll("#userList tbody tr");
@@ -386,43 +306,6 @@
 
 
 
-    @*
-        // document.getElementById("searchBox").addEventListener("keyup", function () {
-        //     var filter = this.value.toLowerCase();
-        //     var users = document.querySelectorAll("#userList tbody tr");
-
-        //     // Convertir el NodeList a un array
-        //     Array.from(users).forEach(function (user) {
-        //         var textContent = user.textContent.toLowerCase(); // Obtener todo el contenido de texto de la fila
-        //         if (textContent.includes(filter)) {
-        //             user.style.display = ""; // Mostrar si coincide
-        //         } else {
-        //             user.style.display = "none"; // Ocultar si no coincide
-        //         }
-        //     });
-        // }); *@
-
-
-        function enviarFechaAlControlador(fecha) {
-            // Construye la URL con el parámetro de fecha en formato yyyy-MM-dd
-            const url = `/Consultas/ObtenerConFBsultasAsync2?fecha=${fecha}`;
-
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Error en la respuesta del servidor");
-                    }
-                    return response.json();
-                })
-                .then(data => console.log("Respuesta del servidor:", data))
-                .catch(error => console.error('Error en la solicitud:', error));
-        }
-
     function formatearFecha(fecha) {
 
         let spliteo = fecha.split("-");
@@ -434,9 +317,10 @@
 
     }
 
+    /*Filtro de busqueda por fecha */
 
     function ObtenerConsultasPorDia() {
-        console.log('Ibteniendo consultas...');
+        console.log('Obteniendo consultas...');
 
         const datepicker = document.getElementById('datepicker');
         const fechaFrontend = datepicker.value;
@@ -470,6 +354,7 @@
     }
 
 
+    /*Actualizar tabla consultas*/
     function actualizarTablaConsultas(consultas) {
     console.log('Actualizando tabla con consultas:', consultas); // Debug
 
@@ -514,6 +399,7 @@
 }
 
 // Función para inicializar los event listeners
+
 function inicializarEventListeners() {
     document.querySelectorAll('.asistencia-link').forEach(link => {
         link.addEventListener('click', function(e) {

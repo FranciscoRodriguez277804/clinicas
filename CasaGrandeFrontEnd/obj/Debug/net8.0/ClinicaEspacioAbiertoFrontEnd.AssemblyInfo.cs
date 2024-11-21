@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClinicaEspacioAbiertoFrontEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+665c3bbc0fc633054e84c50729aa2b68b39c4400")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+290d3a8189bd9cf6d9dacbefe7a241f3c7adb649")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClinicaEspacioAbiertoFrontEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClinicaEspacioAbiertoFrontEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
