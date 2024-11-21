@@ -137,8 +137,7 @@
                         <th>Nombre del Técnico</th>
                         <th>Hora de inicio</th>
                         <th>Hora fin</th>
-                        <th>Asistencia Usuario</th>
-                        <th>Acciones</th>
+                        <th>Asistencia Usuario</th>                   
                     </tr>
                 </thead>
                 <tbody>
@@ -195,16 +194,6 @@
                                     }
 
                         }
-                            </td>
-                            <td>
-                                <button class="btn"
-                                        data-id="@consulta.ID"
-                                        data-asistencia-usuario="@consulta.Asistencia_usuario_recepcion"
-                                        data-asistencia-tecnico="@consulta.Asistencia_tecnicos_recepcion"
-                                        data-motivo-inasistencia="@consulta.Motivo_inasistencia"
-                                        onclick="abrirModalAsistencia(this)">
-                                    <img class="img-fluid" src="~/assets/editNote.png" alt="abrirModalAsistencia" />
-                                </button>
                             </td>
                         </tr>
                     }
@@ -380,16 +369,6 @@
             <td><div class="time-pill">${consulta.hora_inicio}</div></td>
             <td><div class="time-pill">${consulta.hora_fin}</div></td>
             <td class="text-center">${generarColumnasAsistencia(consulta, 'usuario')}</td>
-            <td>
-                <button class="btn"
-                        data-id="${consulta.id}"
-                        data-asistencia-usuario="${consulta.asistencia_usuario_recepcion || ''}"
-                        data-asistencia-tecnico="${consulta.asistencia_tecnicos_recepcion || ''}"
-                        data-motivo-inasistencia="${consulta.motivo_inasistencia || ''}"
-                        onclick="abrirModalAsistencia(this)">
-                    <img class="img-fluid" src="/assets/editNote.png" alt="abrirModalAsistencia" />
-                </button>
-            </td>
         `;
         tablaBody.appendChild(fila);
     });
