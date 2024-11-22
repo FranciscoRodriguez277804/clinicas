@@ -1,6 +1,13 @@
 .vs
-CasaGrandeFrontEnd/.vs
+package-lock.json
+node_modules
+
+[Dd]ebug/
+
 CasaGrandeFrontEnd/bin/Debug
 CasaGrandeFrontEnd/obj/Debug
+
+CasaGrandeFrontEnd/.vs
+
 CasaGrandeFrontEnd/node_modules
 CasaGrandeFrontEnd/package-lock.json
