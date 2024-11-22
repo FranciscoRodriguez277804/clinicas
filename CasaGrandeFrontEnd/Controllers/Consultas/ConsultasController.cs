@@ -1787,7 +1787,7 @@ namespace ClinicaEspacioAbiertoFrontEnd.Controllers.Consultas
 
         //Cambiar estado de consulta a asiste o no asiste 
         [HttpPost]
-        public async Task<IActionResult> ActualizarAsistenciaPut(string id, string tipo, string estado)
+        public async Task<IActionResult> ActualizarAsistenciaPost(string id, string asistenciaUsuarioRecepcion, string motivoInasistencia)
         {
             try
             {
@@ -1795,9 +1795,8 @@ namespace ClinicaEspacioAbiertoFrontEnd.Controllers.Consultas
                 var actualizacion = new ConsultasModel
                 {
                     ID = id,
-                    Asistencia_usuario_recepcion = tipo == "Usuario" ? estado : null,
-                    Asistencia_tecnicos_recepcion = tipo == "Tecnico" ? estado : null,
-                    Motivo_inasistencia = estado == "No Asiste" ? "Sin especificar" : "",
+                    Asistencia_usuario_recepcion = asistenciaUsuarioRecepcion != null ? asistenciaUsuarioRecepcion : "",
+                    Motivo_inasistencia = asistenciaUsuarioRecepcion != null ? motivoInasistencia : "",
                     Sucursal = HttpContext.Session.GetString("Sucursal")
                 };
 
