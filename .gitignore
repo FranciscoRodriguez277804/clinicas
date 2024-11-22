@@ -3,6 +3,7 @@ package-lock.json
 node_modules
 
 [Dd]ebug/
+[Rr]elease/
 
 CasaGrandeFrontEnd/bin/Debug
 CasaGrandeFrontEnd/obj/Debug
