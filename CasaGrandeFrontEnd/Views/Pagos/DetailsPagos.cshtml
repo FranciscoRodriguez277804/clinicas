@@ -1,0 +1,248 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Pagos>
+@{
+    ViewData["Title"] = "Details";
+    
+}
+
+
+<h1>PANEL DE PAGOS</h1>
+
+<div class="row justify-content-center">
+    <!-- Primera columna: gráfica de pagos y tabla -->
+    <div class="container">
+        <!-- Fila para la gráfica y el formulario -->
+        <div class="row mb-3">
+            <div class="col-6">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <canvas id="graficaPagos"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Agregar un nuevo ingreso o pago</h3>
+                    </div>
+                    <div class="modal-body justify-content-center">
+                        @Html.Partial("AgregarPagosCompleto", new ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Pagos())
+                    </div>
+                    <div id="facturacionModal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="col-12"><strong>Detalles del pago</strong></h4>
+                                <span class="close">&times;</span>
+                            </div>
+
+                            <div class="mt-2" id="modalBody"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="form-group col-12 m-3">
+            <label for="buscadorPagos">Buscar Pagos</label>
+            <input type="text" id="buscadorPagos" class="form-control" placeholder="Buscar pagos..." />
+        </div>
+        <!-- Fila para la tabla -->
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered shadow-sm">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>Fecha de consulta</th>
+                                <th>Nombre de usuario</th>
+                                <th>Nombre de empleado</th>
+                                <th>Estado de pago</th>
+                                <th>Nro Factura</th>
+                                <th>Fecha de pago</th>
+                                <th>Importe</th>
+                                <th>Estado Conciliado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var pago in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@pago.fecha_consulta</td>
+                                    <td class="text-center">
+                                        @if (pago.nombre_Usuario != null)
+                                        {
+                                            <p>@pago.nombre_Usuario</p>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">No disponible</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (pago.nombre_Empleado != null)
+                                        {
+                                            <p>@pago.nombre_Empleado</p>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">No disponible</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">@pago.estado</td>
+                                    <td class="text-center">@pago.nro_factura</td>
+                                    <td class="text-center">@pago.fecha_pago</td>
+                                    <td class="text-end">@pago.Importe</td>
+                                    <td class="text-center">@pago.estado_conciliado</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    
+   
+
+
+
+<style>
+    td,tr,th{
+        border:2px solid black;
+        margin:1px;
+        padding:15px;
+    }
+</style>
+<script>
+        $(document).ready(function () {
+
+            cargarGraficaPagos();
+        });
+        function cargarGraficaPagos() {
+            $.ajax({
+                url: '@Url.Action("pagosPorMesPartial", "Pagos")',
+                type: 'GET',
+                success: function (result) {
+                    var ctx = document.getElementById('graficaPagos').getContext('2d');
+
+                    let delayed; // Para controlar la animación
+
+                    // Configuración de los datos
+                    const data = {
+                        labels: result.labels, // Datos obtenidos del controlador
+                        datasets: [{
+                            label: 'Pagos Totales por Mes',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            data: result.data, // Datos obtenidos del controlador
+                            pointStyle: 'circle' // Estilo de los puntos
+                        }]
+                    };
+
+                    // Configuración de la gráfica
+                    const config = {
+                        type: 'bar', // Tipo de gráfico
+                        data: data,
+                        options: {
+                            responsive: true,
+                            animation: {
+                                onComplete: () => {
+                                    delayed = true;
+                                },
+                                delay: (context) => {
+                                    let delay = 0;
+                                    if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                                    }
+                                    return delay;
+                                },
+                            },
+                            scales: {
+                                x: {
+                                    stacked: true, // Ejes apilados
+                                },
+                                y: {
+                                    beginAtZero: true, // Comenzar en cero
+                                    stacked: true // Ejes apilados
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Total de Pagos por Mes'
+                                }
+                            }
+                        }
+                    };
+
+                    // Crear el gráfico
+                    const myChart = new Chart(ctx, config);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error al cargar la gráfica:", error);
+                }
+            });
+        }
+        $(document).ready(function () {
+            $('#buscadorPagos').on('input', function () {
+                var term = $(this).val().trim();
+
+                if (term.length > 0) {
+                    $.ajax({
+                        url: '/Pagos/BuscarPagos', // Cambia esta URL según tu ruta
+                        data: { term: term },
+                        success: function (data) {
+                            updatePaymentTable(data);
+                        },
+                        error: function () {
+                            console.error('Error al buscar pagos');
+                        }
+                    });
+                } else {
+                    loadAllPayments(); // Cargar todos los pagos si no hay término
+                }
+            });
+        });
+        function updatePaymentTable(pagos) {
+            var $tbody = $('table tbody');
+            $tbody.empty(); // Limpiar la tabla existente
+
+            if (pagos.length === 0) {
+                $tbody.append('<tr><td colspan="8" class="text-center">No hay resultados</td></tr>');
+                return;
+            }
+
+            // Llenar la tabla con los pagos
+            $.each(pagos, function (index, pago) {
+                var row = `<tr>
+                    <td class="text-center">${pago.fecha_consulta}</td>
+                    <td class="text-center">${pago.nombre_Usuario || '<span class="text-muted">No disponible</span>'}</td>
+                    <td class="text-center">${pago.nombre_Empleado || '<span class="text-muted">No disponible</span>'}</td>
+                    <td class="text-center">${pago.estado}</td>
+                    <td class="text-center">${pago.nro_factura}</td>
+                    <td class="text-center">${pago.fecha_pago}</td>
+                    <td class="text-end">${pago.Importe}</td>
+                    <td class="text-center">${pago.estado_conciliado}</td>
+                </tr>`;
+                $tbody.append(row);
+            });
+        }
+
+        function loadAllPayments() {
+            $.ajax({
+                url: '/Pagos/GetAllPayments', // Cambia esta URL según tu ruta
+                success: function (data) {
+                    updatePaymentTable(data);
+                },
+                error: function () {
+                    console.error('Error al cargar pagos');
+                }
+            });
+        }
+
+</script>

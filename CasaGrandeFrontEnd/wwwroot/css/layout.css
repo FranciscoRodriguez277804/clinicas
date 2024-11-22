@@ -1,0 +1,459 @@
+﻿:root {
+    --colorNav: rgba(255, 255, 255, 1);
+    --colorBody: #F2F6FA; /* Color de fondo más claro */
+    --colorButton: #00A896; /* Verde suave para los botones */
+    --colorTexto: rgba(14, 14, 14, 1);
+    --colorBorde: #E0E0E0; /* Borde sutil */
+    --colorTituloModal: rgb(67, 66, 66);
+    --colorAzul: rgba(32, 109, 143, 1);
+    --colorBlanco: rgba(255, 255, 255, 1);
+    --colorAmarillo: rgba(255, 222, 89, 1);
+    --backModalColor: rgba(0, 0, 0, 0.5);
+}
+* {
+    padding:0;
+    margin:0;
+}
+.popup-success {
+    background-color: rgba(0, 200, 0, 0.54);
+    border:2px solid green;
+    color:white;
+    border-radius:44px;
+}
+
+.popup-error {
+    background-color: rgba(222, 74, 26, 0.63);
+    border: 2px solid rgb(255, 6, 0);
+    color: white;
+    border-radius: 44px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0; /* Agregar algo de padding para asegurar el tamaño */
+    background-color:var(--colorNav); /* El mismo color de fondo */
+    position: absolute; /* Mantener en el flujo normal del documento */
+}
+    footer p {
+        margin: 0; /* Elimina cualquier margen predeterminado en el párrafo */
+        padding: 0;
+    }
+
+main {
+    margin-bottom: 0; /* Asegúrate de que el margen inferior esté en 0 */
+    padding-bottom: 0; /* Asegúrate de que el padding inferior esté en 0 */
+}
+
+.loader-overlay {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.container-fluid {
+    padding: 0;
+    margin: 0;
+}
+body {
+     font-family: 'Montserrat', sans-serif;
+    background-color: var(--colorBody);
+}
+a{
+    font-family: 'League Spartan', sans-serif;
+}
+h1, h2, h3 {
+    font-family: 'League Spartan', sans-serif;
+}
+
+header {
+    width: 100%;
+    overflow-x: hidden; /* Evita el desbordamiento horizontal */
+    box-sizing: border-box; /* Asegura que padding y border no excedan el ancho del contenedor */
+    margin: 0; /* Elimina cualquier margen por defecto */
+
+}
+    header nav {
+        align-items: center;
+        background-color: var(--colorNav);
+    }
+
+#graficaPagos {
+    width: 100% !important; /* Ajusta al tamaño del contenedor */
+    height: 400px; /* Ajusta la altura según el diseño */
+}
+
+#navSuperior {
+    height: 92px;
+    background-color: var(--colorNav);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+
+#imgPerfilUsuario {
+    width: 44px;
+    height: 44px;
+    border-radius: 36.22px;
+    margin-left: 5px;
+    /* Ajustar la imagen sin perder calidad */
+    object-fit: cover; /* Ajusta la imagen para que llene el contenedor sin distorsionarse */
+    image-rendering: auto; /* Ayuda a mejorar la calidad al escalar imágenes pequeñas */
+    image-rendering: -webkit-optimize-contrast; /* Mejora la calidad en algunos navegadores */
+    image-rendering: crisp-edges; /* En algunos navegadores permite mejorar el enfoque de imágenes pequeñas */
+    /* Visibilidad de la imagen */
+    opacity: 1; /* Asegúrate de que la imagen sea visible */
+}
+
+p {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: left;
+    color: var(--colorAzul);
+}
+
+#nombreFotoPerfil{
+    
+    text-align:center;
+    height:44px;
+    width:238px;
+    
+}
+.divider {
+    background: rgba(246, 246, 246, 1);
+    width: 238px;
+    height: 2px;
+    gap: 0px;
+    border-radius: 2px 0px 0px 0px;
+    justify-content:center;
+    align-items:center;
+    
+}
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iconConfig {
+    padding: 10px; /* Espaciado interno del icono */
+    border-radius: 50%; /* Fondo circular */
+    background-color:  rgba(245, 247, 250, 1);
+    /* Fondo gris para cada icono */
+    margin: 0 10px; /* Espaciado entre los iconos */
+    color: black; /* Color de los iconos */
+    text-decoration: none; /* Quitar subrayado en el enlace */
+    display: flex; /* Para centrar el icono dentro del enlace */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 50px; /* Anchura fija del fondo */
+    height: 50px; /* Altura fija del fondo */
+}
+
+    .iconConfig i {
+        font-size: 24px; /* Tamaño de los iconos */
+    }
+
+
+.card-header {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+header nav a {
+    color: var(--colorTexto);
+}
+    header nav a:hover {
+        color: var(--colorTexto);
+        font-family: 'League Spartan', sans-serif;
+    }
+#bodyPrincipal{
+    margin-right:0px;
+}
+
+#searchResults {
+    position: absolute;
+    z-index: 1000;
+}
+.navbar {
+    text-align: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    
+}
+
+
+.card-header svg {
+    margin-right: 10px; /* Agrega un margen entre el icono y el texto */
+}
+.list-group-item {
+    cursor: pointer;
+}
+
+.bodyRender{
+    margin-left:5px;
+    margin-right:0px;
+}
+
+
+#accordionExample {
+    width: 100%; /* Asegura que ocupe todo el ancho de la barra lateral */
+}
+
+.btnCollapse {
+    width: 100%; /* Asegura que el botón de colapso ocupe todo el ancho */
+    margin:5px;
+}
+
+
+
+.card-header {
+    padding: 2px; /* Opcional: para eliminar padding extra si lo prefieres */
+}
+
+.cardLay {
+    background-color: transparent;
+    border: none;
+}
+.card-header {
+    border: none;
+    background-color: transparent;
+}
+
+
+.btnCollapse {
+    display: flex; /* Usar flex para alinear los elementos */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Que el botón ocupe todo el ancho disponible */
+    padding: 15px; /* Espaciado interno */
+    color: var(--colorTexto); /* Color del texto */
+    background-color: var(--colorNav); /* Color de fondo del botón */
+    border: none; /* Sin bordes */
+    font-size: 15px; /* Tamaño de fuente */
+    font-family: Poppins; /* Fuente */
+    font-weight: 500; /* Grosor del texto */
+    letter-spacing: -0.02em; /* Espaciado entre letras */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+    .btnCollapse svg.icon {
+        margin-right: 10px; /* Espacio entre el ícono del lado izquierdo y el texto */
+    }
+
+    .btnCollapse svg.arrow {
+        margin-left: 10px; /* Espacio entre el texto y la flecha del lado derecho */
+    }
+
+    .btnCollapse:hover {
+        border: 1px solid var(--colorTexto);
+        color: var(--colorAmarillo);
+        background-color: var(--colorAzul);
+        z-index: 1000;
+        font-size: 17px;
+    }
+
+    .btnCollapse:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+div.card-body ul li a {
+    color: var(--colorTexto);
+    
+}
+
+
+.rotate-90 {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+#InicioBtn {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 10px;
+    color: var(--colorTexto);
+    background-color: var(--colorNav);
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+}
+    #InicioBtn:hover {
+        border: 1px solid rgb(255, 255, 255);
+        color: var(--colorTexto);
+        z-index: 1000;
+        font-size: 17px;
+    }
+    a {
+        text-decoration: none;
+        color: var(--colorBody);
+        padding:10px;
+    }
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo gris semitransparente */
+    z-index: 9999; /* Asegura que esté por encima de todo */
+    
+    visibility: hidden; /* Mantener oculto inicialmente */
+}
+
+
+
+#barraLateral {
+    transition: width 0.3s;
+    overflow: hidden;
+    height:auto;
+    min-height:300px;
+    background-color: var(--colorNav);
+    padding: 24px;
+    gap: 24px;
+    border: 0px 1px 0px 0px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    gap: 8px;
+}
+
+span {
+   color: var(--colorTexto);
+}
+.card-header svg {
+    margin-right: 10px; /* Agrega un margen entre el icono y el texto */
+}
+
+/* Loader en la esquina superior izquierda */
+.loader {
+    position: absolute;
+    top: 0px; /* Ajuste vertical desde el top */
+    left: 10px; /* Ajuste horizontal desde el left */
+}
+
+/* Ajusta el tamaño del GIF si es necesario */
+.loader img {
+    width: 75px;
+    height: auto;
+}
+
+/* Ajustes para el contenedor del header */
+.container-fluid {
+    display: flex;
+    justify-content: space-between; /* Espacia los elementos (loader, logo, barra de búsqueda) */
+    align-items: center;
+}
+
+#divSearch {
+    width: 303.33px;
+    height: 50px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px; /* Añadir un padding interno para espacio alrededor del contenido */
+    background-color: rgba(245, 247, 250, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera opcional */
+}
+
+#searchInput {
+    background-color: rgba(245, 247, 250, 1);
+    border: none;
+    outline: none;
+    flex-grow: 1; /* Deja que el input ocupe todo el espacio restante */
+    padding-left: 10px; /* Espacio entre el ícono y el texto */
+    font-size: 16px;
+}
+
+.search-icon {
+    font-size: 20px;
+    color: gray;
+}
+
+/* Opcional: Si deseas cambiar el estilo del input al hacer focus */
+#searchInput:focus {
+    outline: none; /* Elimina el borde por defecto del navegador */
+}
+
+#searchResults {
+    margin-top: 5px;
+}
+svg {
+    transform: rotate(-90deg);
+    stroke: var(--colorTexto);
+}
+.icon {
+    transform: rotate(0);
+}
+
+
+
+.boton-agregar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .boton-agregar i {
+        margin-right: 5px; /* Espaciado entre ícono y texto */
+    }
+
+.col-1 i {
+    font-size: 1.5rem; /* Tamaño del ícono info para que sea más visible */
+}
+
+
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo gris con opacidad */
+    display: none; /* Oculto inicialmente */
+    z-index: 998; /* Asegúrate de que esté detrás del modal */
+}
+
+    .modal-backdrop.show {
+        display: block; /* Muestra el modal-backdrop */
+    }
+
+    
+
+
+.modal {
+    background-color: var(--colorBlanco);
+    font-family: 'League Spartan', 'Nunito Sans', sans-serif;
+    width: 30%;
+    background: rgba(255, 255, 255, 1);
+    max-width: 400px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0; /* Asegura que el modal esté oculto hacia la derecha */
+    z-index: 999;
+    gap: 44px;
+    left: auto;
+    padding:6px;
+}
+
+    .modal.show {
+        right: 0; /* Muestra el modal alineado al borde derecho */
+    }
+
+
+.form-control {
+    background-color:  rgba(245, 246, 250, 1);
+    padding: 10px 12px 10px 12px;
+    gap: 0px;
+    border-radius: 4px;
+    border: 0.6px 0px 0px 0px;
+    justify-content: space-between;
+}
+.modal-content{
+    border:none;
+    padding:15px;
+}

@@ -1,0 +1,288 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ValueObjects.MedicoModel>
+
+@using System
+
+@{
+
+
+    var primerConsultaConFecha = Model
+           .SelectMany(c => c.Horarios.Values.SelectMany(h => h))
+           .FirstOrDefault(c => c.Fecha_Consulta != null && (c.Dia != null || c.Dia != ""));
+
+    var fechaInicial = primerConsultaConFecha?.Fecha_Consulta ?? DateTime.Now;
+    string Dia = "";
+    var fechaFormateada = fechaInicial.ToString("yyyy-MM-dd"); // Formato ISO para JavaScript
+    if (primerConsultaConFecha != null)
+    {
+        if (primerConsultaConFecha.Dia != null && primerConsultaConFecha.Dia != "")
+        {
+            Dia = primerConsultaConFecha.Dia;
+        }
+
+    }
+
+
+    var usuariosConConsultas = Model
+        .SelectMany(m => m.Horarios.Values.SelectMany(h => h))
+        .Where(c => !string.IsNullOrEmpty(c.NombreUsuario))
+        .Select(c => c.NombreUsuario)
+        .Distinct()
+        .OrderBy(nombre => nombre)
+        .ToList();
+
+
+}
+<link src="~/css/listaConsultas.css" rel="stylesheet" />
+<style>
+    .tecnicos-selector {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 300px;
+        margin: 20px auto;
+    }
+
+    .tecnicos-label {
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .tecnicos-select {
+        padding: 10px 15px;
+        font-size: 1em;
+        font-weight: 400;
+        color: #555;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'><polygon points='70,98 130,30 10,30' fill='%23999'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+
+        .tecnicos-select:hover {
+            border-color: #999;
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .tecnicos-select:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .tecnicos-select option {
+            color: #333;
+            padding: 10px;
+            font-size: 1em;
+        }
+</style>
+
+<div id="DivtablaxMedico">
+    <div class="titulo row align-items-center">
+        <div class="col-3 row " id="primerDiv">
+            <p class="titulo-text col-10">Consultas del día:</p>
+            <div class="row align-items-center medicoFecha">
+                <p class="fecha-consulta-text text-center">
+                    <button id="flecha-izquierda-Medico" class="btn flecha">
+                        <!-- Icono de flecha izquierda -->
+                        <i class="bi bi-arrow-left-circle"></i>
+                    </button>
+
+                    <span id="fecha-consultaMedico" data-fecha-inicial="@fechaFormateada">@fechaFormateada</span>, <span id="dia">@Dia</span>
+
+                    <button id="flecha-derecha-Medico" class="btn flecha">
+                        <i class="bi bi-arrow-right-circle"></i>
+                    </button>
+                </p>
+            </div>
+
+        </div>
+        <div class="col-6 row g-0 selects justify-content-center">
+            <div class="col-5">
+                <label for="tecnico-select" class="selector-label">Búsqueda por técnico</label>
+                <select id="tecnico-select" class="form-select">
+                    <option value="all">Selecciona un Técnico</option>
+                    @foreach (var medico in Model)
+                    {
+                        <option value="@medico.NombreMedico.Replace(" ", "-")">@medico.NombreMedico</option>
+                    }
+                </select>
+            </div>
+            <div class="col-5">
+                <label for="usuario-select" class="selector-label">Búsqueda por usuario</label>
+                <select id="usuario-select" class="form-select">
+                    <option value="all">Selecciona un Usuario</option>
+                    @foreach (var usuario in usuariosConConsultas)
+                    {
+                        <option value="@usuario.Replace(" ", "-")">@usuario</option>
+                    }
+                </select>
+            </div>
+            
+        </div>
+        <div class="col-3 text-center" id="ultimoDiv" >
+            <button class="btn btnAgregarConsulta " onclick="showNuevaConsultaForm()">
+                Agregar una nueva consulta <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                </svg>
+
+            </button>
+        </div>
+    </div>
+
+
+    
+    <table class="table-responsive">
+        <thead>
+            <tr>
+                <th class="col">Hora</th>
+                @foreach (var medico in Model)
+                {
+
+                    <th class="col " id="col-@medico.NombreMedico.Replace(" ", "-")">@medico.NombreMedico</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                
+
+
+
+                TimeZoneInfo zonaHorariaUruguay = TimeZoneInfo.FindSystemTimeZoneById("SA Eastern Standard Time");
+
+                // Obtener la hora actual del servidor
+                DateTime horaServidor = DateTime.Now;
+
+                // Convertir la hora del servidor a la hora de Uruguay
+                DateTime horaUruguay = TimeZoneInfo.ConvertTime(horaServidor, zonaHorariaUruguay);
+                string horaActual = horaUruguay.ToString("HH:mm:ss");
+                foreach (var hora in Model.First().Horarios.Keys.OrderBy(h => h))
+                {
+                    <tr>
+                        <td class="text-rgb(0, 0, 0) hora-cell">@hora</td>
+                        @foreach (var medico in Model)
+                        {
+                            var horaConsulta = hora; // Hora en formato HH:mm:ss
+                            var esPasado = string.Compare(horaActual, horaConsulta) > 0;
+                            var consultas = medico.Horarios.ContainsKey(horaConsulta) ? medico.Horarios[horaConsulta] : new List<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>();
+                            
+                            <td class="@(esPasado ? "pasado medico-col" : "col medico-col")" id="col-@medico.NombreMedico.Replace(" ", "-")"
+                                onclick="agregarConsulta(this)" data-fecha="@fechaFormateada" data-hora="@hora" data-medico="@medico.NombreMedico" >
+                                <ul>
+                                    
+                                    @foreach (var consulta in consultas)
+                                    {
+                                        if(consulta.Asistencia_tecnicos_recepcion != "No asiste" && consulta.Asistencia_usuario_recepcion != "No asiste")
+                                        {
+                                            if (consulta.Convenio == "Ayex")
+                                            {
+                                                <li class="consulta-item" data-sucursal="@consulta.Sucursal">
+                                                    <div class="consulta-content">
+                                                        <p class="nombreUser">@consulta.NombreUsuario</p>
+                                                        
+                                                        <div class="acciones">
+                                                            <p>Acciones:</p>
+                                                            <a href="#" title="Ver" onmouseover="showMenuHover(this)" onmouseout="hideMenuHover(this)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                                </svg>
+                                                            </a>
+                                                            <a href="#" title="Editar" onclick="event.stopPropagation(); showEditForm('@consulta.ID')">
+                                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.69794 2.28467H1.87117C1.58119 2.28467 1.30309 2.39986 1.09804 2.60491C0.892995 2.80995 0.777802 3.08805 0.777802 3.37803V11.0316C0.777802 11.3216 0.892995 11.5997 1.09804 11.8047C1.30309 12.0098 1.58119 12.125 1.87117 12.125H9.52472C9.8147 12.125 10.0928 12.0098 10.2978 11.8047C10.5029 11.5997 10.6181 11.3216 10.6181 11.0316V7.20481" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M9.79806 1.46466C10.0155 1.24718 10.3105 1.125 10.6181 1.125C10.9257 1.125 11.2206 1.24718 11.4381 1.46466C11.6556 1.68215 11.7778 1.97712 11.7778 2.28469C11.7778 2.59226 11.6556 2.88723 11.4381 3.10471L6.24462 8.2982L4.05789 8.84488L4.60457 6.65815L9.79806 1.46466Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                            </a>
+                                                            <a href="#" title="Agregar pago" onclick="event.stopPropagation(); addPago('@consulta.ID')">
+                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M6.88888 10.7778C6.07488 11.1579 5.00483 11.3889 3.83333 11.3889C3.18188 11.3889 2.56222 11.3174 1.99999 11.1891C1.63883 11.1059 1.45794 11.065 1.2416 10.8933C1.10003 10.7721 0.982848 10.625 0.896327 10.46C0.777771 10.2113 0.777771 9.96928 0.777771 9.48589V2.903C0.777771 2.30106 1.41333 1.88794 1.99999 2.02239C2.56222 2.15072 3.18188 2.22222 3.83333 2.22222C5.00483 2.22222 6.07488 1.99122 6.88888 1.61111C7.70288 1.231 8.77294 1 9.94444 1C10.5959 1 11.2155 1.0715 11.7778 1.19983C12.1389 1.28294 12.3198 1.3245 12.5362 1.49561C12.6596 1.59339 12.8136 1.7865 12.8814 1.92889C13 2.17822 13 2.41961 13 2.903V6.19444M10.8611 12V7.72222M8.72222 9.86111H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M2.91664 6.80545V6.81095M8.41664 6.19434C8.41664 6.59953 8.25568 6.98813 7.96917 7.27464C7.68265 7.56116 7.29406 7.72212 6.88886 7.72212C6.48367 7.72212 6.09508 7.56116 5.80856 7.27464C5.52205 6.98813 5.36109 6.59953 5.36109 6.19434C5.36109 5.78915 5.52205 5.40055 5.80856 5.11404C6.09508 4.82753 6.48367 4.66656 6.88886 4.66656C7.29406 4.66656 7.68265 4.82753 7.96917 5.11404C8.25568 5.40055 8.41664 5.78915 8.41664 6.19434Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                            </a>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="menuHover" style="display: none;"
+                                                         onmouseover="keepMenuHover(this)" onmouseout="hideMenuHover(this)">
+                                                        <p class="textoMenu"><strong>Usuario:</strong><span>@consulta.NombreUsuario</span></p>
+                                                        <p class="textoMenu"><strong>Médico:</strong><span>@consulta.Nombre_empleado</span></p>
+                                                        <p class="textoMenu"><strong>Hora de inicio:</strong><span>@consulta.Hora_inicio</span></p>
+                                                        <p class="textoMenu"><strong>Hora de fin:</strong><span>@consulta.Hora_fin</span></p>
+                                                        <p class="textoMenu"><strong>Consultorio:</strong><span>@consulta.n_consultorio</span></p>
+                                                        <p class="textoMenu"><strong>Convenio:</strong><span>@consulta.Convenio</span></p>
+                                                        <p class="textoMenu"><strong>Sucursal:</strong><span>@consulta.Sucursal</span></p>
+                                                        <p class="textoMenu"><strong>Pago:</strong><span>@consulta.Pago.ToString()</span></p>
+                                                    </div>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li style="position: relative;" class="consulta-item" data-sucursal="@consulta.Sucursal">
+                                                    <div class="consulta-content">
+                                                        <p class="nombreUser">@consulta.NombreUsuario</p>
+                                                        <div class="acciones">
+                                                            <p>Acciones:</p>
+                                                            <a href="#" title="Ver" onmouseover="showMenuHover(this)" onmouseout="hideMenuHover(this)">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                                                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                                                                </svg>
+                                                            </a>
+                                                            <a href="#" title="Editar" onclick="event.stopPropagation(); showEditForm('@consulta.ID')">
+                                                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M5.69794 2.28467H1.87117C1.58119 2.28467 1.30309 2.39986 1.09804 2.60491C0.892995 2.80995 0.777802 3.08805 0.777802 3.37803V11.0316C0.777802 11.3216 0.892995 11.5997 1.09804 11.8047C1.30309 12.0098 1.58119 12.125 1.87117 12.125H9.52472C9.8147 12.125 10.0928 12.0098 10.2978 11.8047C10.5029 11.5997 10.6181 11.3216 10.6181 11.0316V7.20481" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M9.79806 1.46466C10.0155 1.24718 10.3105 1.125 10.6181 1.125C10.9257 1.125 11.2206 1.24718 11.4381 1.46466C11.6556 1.68215 11.7778 1.97712 11.7778 2.28469C11.7778 2.59226 11.6556 2.88723 11.4381 3.10471L6.24462 8.2982L4.05789 8.84488L4.60457 6.65815L9.79806 1.46466Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                            </a>
+                                                            <a href="#" title="Agregar pago" onclick="event.stopPropagation(); addPago('@consulta.ID')">
+                                                                <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M6.88888 10.7778C6.07488 11.1579 5.00483 11.3889 3.83333 11.3889C3.18188 11.3889 2.56222 11.3174 1.99999 11.1891C1.63883 11.1059 1.45794 11.065 1.2416 10.8933C1.10003 10.7721 0.982848 10.625 0.896327 10.46C0.777771 10.2113 0.777771 9.96928 0.777771 9.48589V2.903C0.777771 2.30106 1.41333 1.88794 1.99999 2.02239C2.56222 2.15072 3.18188 2.22222 3.83333 2.22222C5.00483 2.22222 6.07488 1.99122 6.88888 1.61111C7.70288 1.231 8.77294 1 9.94444 1C10.5959 1 11.2155 1.0715 11.7778 1.19983C12.1389 1.28294 12.3198 1.3245 12.5362 1.49561C12.6596 1.59339 12.8136 1.7865 12.8814 1.92889C13 2.17822 13 2.41961 13 2.903V6.19444M10.8611 12V7.72222M8.72222 9.86111H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                    <path d="M2.91664 6.80545V6.81095M8.41664 6.19434C8.41664 6.59953 8.25568 6.98813 7.96917 7.27464C7.68265 7.56116 7.29406 7.72212 6.88886 7.72212C6.48367 7.72212 6.09508 7.56116 5.80856 7.27464C5.52205 6.98813 5.36109 6.59953 5.36109 6.19434C5.36109 5.78915 5.52205 5.40055 5.80856 5.11404C6.09508 4.82753 6.48367 4.66656 6.88886 4.66656C7.29406 4.66656 7.68265 4.82753 7.96917 5.11404C8.25568 5.40055 8.41664 5.78915 8.41664 6.19434Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="menuHover" style="display: none;"
+                                                         onmouseover="keepMenuHover(this)" onmouseout="hideMenuHover(this)">
+                                                        <p class="textoMenu"><strong>Usuario:</strong><span>@consulta.NombreUsuario</span></p>
+                                                        <p class="textoMenu"><strong>Médico:</strong><span>@consulta.Nombre_empleado</span></p>
+                                                        <p class="textoMenu"><strong>Hora de inicio:</strong><span>@consulta.Hora_inicio</span></p>
+                                                        <p class="textoMenu"><strong>Hora de fin:</strong><span>@consulta.Hora_fin</span></p>
+                                                        <p class="textoMenu"><strong>Consultorio:</strong><span>@consulta.n_consultorio</span></p>
+                                                        <p class="textoMenu"><strong>Convenio:</strong><span>@consulta.Convenio</span></p>
+                                                        <p class="textoMenu"><strong>Sucursal:</strong><span>@consulta.Sucursal</span></p>
+                                                        <p class="textoMenu"><strong>Pago:</strong><span>@consulta.Pago.ToString()</span></p>
+                                                    </div>
+                                                </li>
+                                            }
+                                        } 
+                                    }
+                                </ul>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="100%">No existen consultas para el día de hoy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

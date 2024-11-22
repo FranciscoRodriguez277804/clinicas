@@ -1,0 +1,164 @@
+﻿@model List<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Usuario>
+<link rel="stylesheet" href="~/css/listaConsultas.css">
+<style>
+    /* Contenedor general de cada usuario */
+    .usuario-section {
+        background-color: #f3f3f3;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .usuario-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #e0e0e0;
+        padding: 10px 15px;
+        border-radius: 8px 8px 0 0;
+    }
+
+        .usuario-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .usuario-header p {
+            margin: 0;
+            color: #555;
+        }
+
+    /* Estilo de la tabla de sesiones */
+    .user-table {
+        width: 100%;
+        margin-top: 15px;
+        border-collapse: collapse;
+    }
+
+        .user-table th, .user-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .user-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+    /* Estilo de las etiquetas de hora */
+    .time-pill {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: var(--colorAzul);
+        color: white;
+        border-radius: 15px;
+        font-weight: bold;
+    }
+
+    /* Estilo de la etiqueta de estado */
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        background-color: #f8d775;
+        color: #333;
+    }
+
+    /* Estilo para los botones de acción */
+    .btn-add-pago {
+        padding: 6px 12px;
+        color: white;
+        background-color: #28a745;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    section{
+        background-color:transparent;
+    }
+        .btn-add-pago:hover {
+            background-color: #218838;
+        }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-sm-8">
+        <input type="text" id="searchBox" placeholder="Buscar usuario..." class="form-control search-input mb-3" />
+    </div>
+</div>
+
+<!-- Verificar si el modelo tiene datos -->
+@if (Model != null && Model.Any())
+{
+    <div id="userList">
+        @foreach (var usuario in Model)
+        {
+            <div class="usuario-section">
+                <div class="usuario-header">
+                    <h3>@usuario.NombreCompleto.PrimerNombre @usuario.NombreCompleto.PrimerApellido</h3>
+                    <p><strong>Cédula:</strong> @usuario.CI | <strong>Email:</strong> @usuario.email</p>
+                </div>
+
+                @if (usuario.Sesiones != null && usuario.Sesiones.Any())
+                {
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha de Consulta</th>
+                                <th>Hora de Inicio</th>
+                                <th>Hora de Fin</th>
+                                <th>Nombre del Empleado</th>
+                                <th>Estado de Pago</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var consulta in usuario.Sesiones)
+                                if (consulta.Pago != "Pagado")
+                                {
+                                    <tr>
+                                        <td>@consulta.Fecha_Consulta?.ToString("dd/MM/yyyy")</td>
+                                        <td><span class="time-pill">@consulta.Hora_inicio</span></td>
+                                        <td><span class="time-pill">@consulta.Hora_fin</span></td>
+                                        <td>@consulta.Nombre_empleado</td>
+                                        <td><span class="status-badge">Pendiente</span></td>
+                                        <td>
+                                            <button class="btn-add-pago" onclick="addPago('@consulta.ID')">Agregar pago</button>
+                                        </td>
+                                    </tr>
+                                }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No hay consultas pendientes de pago para este usuario.</p>
+                }
+            </div>
+        }
+    </div>
+}
+
+    <script>
+    document.getElementById("searchBox").addEventListener("keyup", function () {
+        var filter = this.value.toLowerCase();
+        var users = document.querySelectorAll("#userList .usuario-section");
+
+        users.forEach(function (user) {
+            var name = user.querySelector("h3").textContent.toLowerCase();
+            if (name.includes(filter)) {
+                user.style.display = "";
+            } else {
+                user.style.display = "none";
+            }
+        });
+    });
+
+</script>

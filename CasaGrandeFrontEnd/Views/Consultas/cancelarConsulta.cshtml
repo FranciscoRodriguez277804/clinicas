@@ -1,0 +1,360 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>
+@{
+    ViewData["Title"] = "Cancelar consulta";
+}
+@using System
+
+@{
+    // Obtener la primera consulta con fecha disponible
+    var primerConsultaConFecha = Model.FirstOrDefault(c => c.Fecha_Consulta != null && !string.IsNullOrEmpty(c.Dia));
+
+    // Establecer fecha inicial desde la primera consulta o fecha actual si no hay consultas
+    var fechaInicial = primerConsultaConFecha?.Fecha_Consulta ?? DateTime.Now;
+    var fechaFormateada = fechaInicial.ToString("yyyy-MM-dd"); // Formato ISO para JavaScript
+
+    string Dia = "";
+    if (primerConsultaConFecha != null && !string.IsNullOrEmpty(primerConsultaConFecha.Dia))
+    {
+        Dia = primerConsultaConFecha.Dia;
+    }
+}
+<div>
+    <input type="text" id="fechaSeleccionada" placeholder="Selecciona una fecha" readonly>
+</div>
+<div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-danger cancelarTodasConsultasBtn" data-fecha-consulta="@primerConsultaConFecha">
+        Cancelar todas las consultas del día
+    </button>
+</div>
+
+
+<div class="table-responsive">
+    <table class="table no-wrap user-table mb-0">
+        <thead>
+            <tr>
+                <th scope="col" class="border-0 text-uppercase font-medium pl-4">Fecha Consulta</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Nombre usuario</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Nombre tecnico</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Asistencia usuario</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Hora</th>
+                <th scope="col" class="border-0 text-uppercase font-medium">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var consulta in Model)
+            {
+                if (consulta.Asistencia_tecnicos_recepcion != "Cancelada")
+                {
+                    
+                
+                <tr>
+                    <td>
+                        <h5 class="font-medium mb-0">@consulta.Fecha_Consulta</h5>
+                    </td>
+                    <td>
+                        <h5 class="font-medium mb-0">@consulta.NombreUsuario</h5>
+                    </td>
+                    <td>
+                        <span class="text-muted">@consulta.Nombre_empleado</span><br>
+                        <span class="text-muted">@consulta.Servicio</span>
+                    </td>
+                    <td>
+                        <span class="text-muted">@consulta.Asistencia_usuario_recepcion</span><br>
+                        <span class="text-muted">@consulta.Motivo_inasistencia</span>
+                    </td>
+                    <td>
+                        <span class="text-muted">@consulta.Hora_inicio</span><br>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2 cancelarConsultaEspecificaBtn"
+                        data-id ="@consulta.ID"
+                                data-sucursal="@consulta.Sucursal"
+                                data-fecha-consulta="@consulta.Fecha_Consulta.Value.ToString("yyyy-MM-dd")">
+                            <i class="fa fa-cancel"></i>
+                        </button>
+                            <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2 cancelarTodasLasConsultasEspecificaBtn"
+                                    data-id="@consulta.ID"
+                                    data-sucursal="@consulta.Sucursal"
+                                    data-fecha-consulta="@consulta.Fecha_Consulta.Value.ToString("yyyy-MM-dd")" 
+                                    data-horaInicio = " @consulta.Hora_inicio">
+                                <i class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-cancel" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" />
+                                        <path d="M16 3v4" />
+                                        <path d="M8 3v4" />
+                                        <path d="M4 11h16" />
+                                        <path d="M19 19m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                        <path d="M17 21l4 -4" />
+                                    </svg>
+                                </i>
+                            </button>
+                    </td>
+                    </tr>
+                }
+                else
+                {
+
+                    <tr style="background-color:rgba(255, 0, 0, 0.65); color:white;">
+                        <td>
+                            <h5 class="font-medium mb-0">@consulta.Fecha_Consulta</h5>
+                        </td>
+                        <td>
+                            <h5 class="font-medium mb-0">@consulta.NombreUsuario</h5>
+                        </td>
+                        <td>
+                            <span class="text-muted">@consulta.Nombre_empleado</span><br>
+                            <span class="text-muted">@consulta.Servicio</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@consulta.Asistencia_usuario_recepcion</span><br>
+                            <span class="text-muted">@consulta.Motivo_inasistencia</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@consulta.Hora_inicio</span><br>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2 cancelarConsultaEspecificaBtn"
+                                    data-id="@consulta.ID"
+                                    data-sucursal="@consulta.Sucursal"
+                                    data-fecha-consulta="@consulta.Fecha_Consulta.Value.ToString("yyyy-MM-dd")">
+                                <i class="fa fa-cancel"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2 cancelarTodasLasConsultasEspecificaBtn"
+                                    data-id="@consulta.ID"
+                                    data-sucursal="@consulta.Sucursal"
+                                    data-fecha-consulta="@consulta.Fecha_Consulta.Value.ToString("yyyy-MM-dd")"
+                                    data-horaInicio = "@consulta.Hora_inicio">
+                                <i class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-cancel" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12.5 21h-6.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v5" />
+                                        <path d="M16 3v4" />
+                                        <path d="M8 3v4" />
+                                        <path d="M4 11h16" />
+                                        <path d="M19 19m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                        <path d="M17 21l4 -4" />
+                                    </svg>
+                                </i>
+                            </button>
+                            
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="cancelSingleModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelSingleModalLabel">Cancelar Consulta Específica</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="cancelSingleForm">
+                    <input type="hidden" id="singleSucursalInput" name="sucursal">
+                    <input type="hidden" id="idConsulta" name="idConsulta" />
+                    <input type="date" id="singleFechaConsultaInput" name="fechaConsulta">
+                    <div class="form-group">
+                        <label for="singleMotivoInasistencia">Motivo de Inasistencia</label>
+                        <textarea class="form-control" id="singleMotivoInasistencia" name="motivo" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Cancelar Consulta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para cancelar todas las consultas del día -->
+<div class="modal fade" id="cancelAllModal" tabindex="-1" role="dialog" aria-labelledby="cancelAllModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="cancelAllForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelAllModalLabel">Cancelar todas las consultas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea cancelar todas las consultas de este día?</p>
+                    <p>Para confirmar, escriba la palabra <strong>Eliminar</strong> en el siguiente campo:</p>
+                    <input type="text" id="confirmTextInput" class="form-control" placeholder="Escriba 'Eliminar' para confirmar" required>
+
+                    <!-- Ocultos: Fecha y Sucursal -->
+                    <input type="hidden" id="allFechaConsultaInput" name="fecha">
+                    <input type="hidden" id="allSucursalInput" name="sucursal">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="confirmCancelAllBtn" class="btn btn-danger" disabled>Eliminar todas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cancelAllSingleModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancelSingleModalLabel">Cancelar todas las sesiones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Aquí puedes mostrar los datos de la consulta -->
+                <div class="form-group">
+                    <label>Nombre del usuario:</label>
+                    <p id="nombreUsuario"></p>
+                </div>
+                <div class="form-group">
+                    <label>Horario de la consulta:</label>
+                    <p id="horarioConsulta"></p>
+                </div>
+                <form id="cancelAllSingleForm">
+                    <input type="hidden" id="AllsingleSucursalInput" name="sucursal">
+                    <input type="hidden" id="AllidConsulta" name="idConsulta" />
+                    <input type="hidden" id="AllsingleFechaConsultaInput" name="fechaConsulta">
+                    <div class="form-group">
+                        <label for="singleMotivoInasistencia">Motivo de Inasistencia</label>
+                        <textarea class="form-control" id="singleMotivoInasistencia" name="motivo" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn m-2 btn-danger">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Inicializa Flatpickr en el input
+    flatpickr("#fechaSeleccionada", {
+        dateFormat: "Y-m-d", // Formato de la fecha
+        onChange: function (selectedDates, dateStr, instance) {
+            if (dateStr) {
+                // Redirige a la acción con la fecha seleccionada
+                location.href = '@Url.Action("cancelarConsultaXfecha")' + '?fecha=' + dateStr;
+            }
+        }
+    });
+    $(document).ready(function () {
+        // Botón para cancelar todas las consultas del día
+        $('.cancelarTodasConsultasBtn').on('click', function () {
+            var sucursal = $('.cancelarConsultaEspecificaBtn').first().data('sucursal');
+            var fechaConsulta = $('.cancelarConsultaEspecificaBtn').first().data('fecha-consulta');
+
+            $('#allSucursalInput').val(sucursal);
+            $('#allFechaConsultaInput').val(fechaConsulta);
+
+            $('#cancelAllModal').modal('show');
+        });
+
+        // Botón para cancelar una consulta específica
+        $('.cancelarConsultaEspecificaBtn').on('click', function () {
+            var sucursal = $(this).data('sucursal');
+            var fechaConsulta = $(this).data('fecha-consulta');
+            var id = $(this).data('id');
+
+            $('#singleSucursalInput').val(sucursal);
+            $('#singleFechaConsultaInput').val(fechaConsulta);
+            $('#idConsulta').val(id);
+            $('#cancelSingleModal').modal('show');
+        });
+        $('.cancelarTodasLasConsultasEspecificaBtn').on('click', function () {
+            var sucursal = $(this).data('sucursal');
+            var fechaConsulta = $(this).data('fecha-consulta');
+            var id = $(this).data('id');
+
+            $('#AllsingleSucursalInput').val(sucursal);
+            $('#AllsingleFechaConsultaInput').val(fechaConsulta);
+            $('#AllidConsulta').val(id);
+            $('#cancelSingleModal').modal('show');
+        });
+        
+        $('.cancelarTodasLasConsultasEspecificaBtn').on('click', function () {
+            var sucursal = $(this).data('sucursal');
+            var fechaConsulta = $(this).data('fecha-consulta');
+            var Horario = $(this).data('horaInicio')
+            var id = $(this).data('id');
+
+            abrirModalCancelarConsulta(id, nombreUsuario, Horario, sucursal, fechaConsulta)
+            $('#cancelSingleModal').modal('show');
+        });
+
+        function abrirModalCancelarConsulta(idConsulta, nombreUsuario, horarioConsulta, sucursal, fechaConsulta) {
+            // Llenar los campos del modal con los datos de la consulta
+            $('#nombreUsuario').text(nombreUsuario);
+            $('#horarioConsulta').text(horarioConsulta);
+            $('#singleSucursalInput').val(sucursal);
+            $('#idConsulta').val(idConsulta);
+            $('#singleFechaConsultaInput').val(fechaConsulta);
+
+            // Mostrar el modal
+            $('#cancelAllSingleModal').modal('show');
+        }
+
+        // Enviar formulario para cancelar una consulta específica
+        $('#cancelSingleForm').on('submit', function (event) {
+            event.preventDefault();
+
+            var motivo = $('#singleMotivoInasistencia').val();
+            if (!motivo.trim()) {
+                alert("Por favor, ingrese un motivo de inasistencia.");
+                return;
+            }
+
+            // Enviar datos vía AJAX
+            var idConsulta = $('#idConsulta').val();
+            var sucursal = $('#singleSucursalInput').val();
+            var fechaConsulta = $('#singleFechaConsultaInput').val();
+
+            $.ajax({
+                url: '@Url.Action("cancelarConsulta2", "Consultas")',
+                type: 'POST',
+                data: {
+                    id: idConsulta,
+                    fecha: fechaConsulta,
+                    sucursal: sucursal,
+                    motivo: motivo
+                },
+                success: function (response) {
+                    $('#cancelSingleModal').modal('hide');
+                    alert("Consulta cancelada con éxito.");
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert("Error al cancelar la consulta.");
+                }
+            });
+        });
+    });
+    $('#cancelAllSingleForm').on('submit', function (e) {
+        e.preventDefault();
+
+        var datosFormulario = $(this).serialize();
+
+        $.ajax({
+            url: '/Consultas/CancelarTodas',  // Cambiar a la ruta que maneje la eliminación de todas las consultas
+            type: 'POST',
+            data: datosFormulario,
+            success: function (respuesta) {
+                alert('Todas las consultas fueron canceladas correctamente');
+                // Cerrar el modal
+                $('#cancelAllSingleModal').modal('hide');
+                // Actualizar la vista o hacer algo después de la cancelación
+            },
+            error: function (error) {
+                alert('Error al cancelar las consultas');
+            }
+        });
+    });
+</script>

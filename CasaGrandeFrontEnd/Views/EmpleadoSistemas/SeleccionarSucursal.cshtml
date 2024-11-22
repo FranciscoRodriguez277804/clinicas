@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "LoginView";
+}
+@{
+    Layout = null;
+}
+@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ValueObjects.SeleccionarSucursalModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <!-- Enlace a la hoja de estilos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Asegura que no haya scroll */
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center; /* Centra el mensaje de error */
+        }
+
+        h1, h3, p {
+            color: dimgray;
+        }
+
+        .background-radial-gradient {
+            background: -webkit-linear-gradient(270deg, #617970,#004961,#0f0d42); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(270deg, #617970,#004961,#0f0d42); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #radius-shape-1 {
+            height: 220px;
+            width: 220px;
+            top: -60px;
+            left: -130px;
+            background: radial-gradient(#44006b, #ad1fff);
+            overflow: hidden;
+            position: absolute;
+        }
+
+        #radius-shape-2 {
+            border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+            bottom: -60px;
+            right: -110px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(#44006b, #ad1fff);
+            overflow: hidden;
+            display: inline-block;
+            animation: rotar 4s infinite linear;
+            position: absolute;
+        }
+
+        .keyframes rotar {
+            from {
+                transform: rotateX(360deg); /* Rotación inicial: 360 grados en el eje X */
+            }
+            to {
+                transform: rotateX(0deg); /* Rotación final: 0 grados en el eje X */
+            }
+        }
+
+        .bg-glass {
+            background-color: hsla(0, 0%, 100%, 0.9) !important;
+            backdrop-filter: saturate(200%) blur(25px);
+        }
+    </style>
+</head>
+<body>
+    <section class="background-radial-gradient overflow-hidden align-items-center">
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+            <div class="row gx-lg-5 align-items-center mb-5">
+                <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                        Sistema de gestión <br />
+                        <span style="color: hsl(218, 81%, 75%)">Clínica espacio abierto</span>
+                    </h1>
+                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                        Bienvenidos/as al nuevo sistema de gestión de Clínica espacio abierto. <br />
+                        Puedes seleccionar una sucursal para continuar.
+                    </p>
+                </div>
+
+                <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                    <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                    <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+                    <div class="card bg-glass">
+                        <div class="card-body px-4 py-5 px-md-5">
+                            <h1>Selecciona una sucursal</h1>
+                            <form asp-action="SeleccionarSucursal" asp-for="Sucursal" asp-controller="EmpleadoSistemas" method="post">
+                                <div class="form-outline mb-4">
+                                    <select id="Sucursal" name="Sucursal" class="form-select">
+                                        <option value="Anexo">Anexo</option>
+                                        <option value="Varela">Varela</option>
+                                    </select>
+                                    <label class="form-label" for="Sucursal">Sucursal</label>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-2">
+                                    Seleccionar
+                                </button>
+                                <div class="error-message">@ViewData["Error"]</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

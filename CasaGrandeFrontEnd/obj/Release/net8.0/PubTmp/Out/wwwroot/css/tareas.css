@@ -1,0 +1,8 @@
+﻿.eliminar-tarea {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+    .eliminar-tarea.ocultar {
+        opacity: 0;
+    }

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "AgregarConvenio";
+}
+
+<h1>Agregar Convenio</h1>
+<p>Complete los datos para agregar un nuevo convenio:</p>
+<form method="post" asp-action="AgregarConvenio" asp-controller="Convenio">
+    <label for="nombreConvenio">
+        Nombre de convenio
+    </label>
+    <input type="text" id="nombreConvenio" name="NombreConvenio" placeholder="Nombre de convenio" />
+    <div class="form-outline" data-mdb-input-init>
+        <label class="form-label" for="textAreaExample">Descripcion</label>
+        <textarea class="form-control" id="textAreaExample" name="Descripcion" rows="4"></textarea>
+    </div>
+    <button  type="submit" class="btn btn-success mt-2">Agregar</button>
+
+</form>
+

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>
+<link href="~/css/Consultas/5Consultas.css" rel="stylesheet"/>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table-responsive table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th><strong>Usuario</strong></th>
+                    <th><strong>Tecnico</strong></th>
+                    <th><strong>Hora de inicio</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var consulta in Model)
+                {
+                    <tr>
+                        <td>@consulta.NombreUsuario</td>
+                        <td>@consulta.Nombre_empleado</td>
+                        <td>
+                            <span class="badge rounded-pill" style="background-color: var(--colorAzul); font-size:14px">@consulta.Hora_inicio</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Paginador -->
+        <div class="pagination">
+            <a href="#" class="disabled">Anterior</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">Siguiente</a>
+        </div>
+    </div>
+</div>

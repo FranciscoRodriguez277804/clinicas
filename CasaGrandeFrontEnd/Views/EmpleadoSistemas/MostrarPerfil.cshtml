@@ -1,0 +1,80 @@
+﻿@model ClinicaEspacioAbiertoFrontEnd.Models.Entidades.Empleados
+
+@{
+    ViewData["Title"] = "MostrarPerfil";
+}
+
+<h1>Detalles de usuario</h1>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <!-- Mostrar la imagen del usuario, o una imagen por defecto si no se proporciona -->
+                <img class="rounded-circle mt-5" width="150px" src="/assets/foto-perfil-generica.jpg">
+                <span class="font-weight-bold">@Model.NombreCompleto.PrimerNombre @Model.NombreCompleto.PrimerApellido</span>
+                <span class="text-black-50">@Model.Celular</span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <label class="labels">Nombre</label>
+                        <input type="text" class="form-control" placeholder="Primer nombre" value="@Model.NombreCompleto.PrimerNombre" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Segundo nombre</label>
+                        <input type="text" class="form-control" placeholder="Segundo nombre" value="@Model.NombreCompleto.SegundoNombre" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Apellido</label>
+                        <input type="text" class="form-control" value="@Model.NombreCompleto.PrimerApellido" placeholder="Primer apellido" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Segundo apellido</label>
+                        <input type="text" class="form-control" value="@Model.NombreCompleto.SegundoApellido" placeholder="Segundo apellido" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Sexo</label>
+                        <input type="text" class="form-control" value="@Model.Sexo" placeholder="Sexo" />
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Número de teléfono</label>
+                        <input type="text" class="form-control" placeholder="Número de teléfono" value="@Model.Celular" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Dirección</label>
+                        <input type="text" class="form-control" placeholder="Dirección" value="@Model.Direccion.Calle" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="labels">Ciudad</label>
+                        <input type="text" class="form-control" placeholder="Ciudad" value="@Model.Direccion.Ciudad" />
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label class="labels">Area</label>
+                        <input type="text" class="form-control" placeholder="Fecha de alta" value="@Model.area_empleado" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Estado</label>
+                        <input type="text" class="form-control" placeholder="Estado de usuario" value="@Model.Estado" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="labels">Fecha de alta</label>
+                        <input type="text" class="form-control" placeholder="Fecha de nacimiento" value="@Model.FechaAlta" />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+</div>
+</div>

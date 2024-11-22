@@ -1,0 +1,501 @@
+﻿@model IEnumerable<ClinicaEspacioAbiertoFrontEnd.Models.Entidades.ConsultasModel>
+
+
+@{
+    ViewData["Title"] = "Pasar Asistencias del Día";
+}
+
+<link rel="stylesheet" href="~/css/Consultas/PasarAsistenciasDelDia.css" />
+
+
+<style>
+
+    .modal {
+        z-index: 1050;
+    }
+
+    .modal-backdrop {
+        z-index: 1040;
+    }
+
+    table-bordered {
+        font-family: "Poppins", sans-serif;
+    }
+
+    .estado-asiste {
+        display: inline-block; /* Permite aplicar padding como un botón */
+        background-color: #c4e538;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        text-align: center;
+        width: 149px
+    }
+
+    .estado-no-asiste {
+        display: inline-block; /* Permite aplicar padding como un botón */
+        background-color: #ff6b6b;
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 16px;
+        text-align: center;
+        width: 149px
+    }
+
+    .bi-x-circle,
+    .bi-check2-circle {
+        font-size: 32px;
+        text-align: center
+    }
+
+    .seccion-filtros {
+        margin: 1rem 0;
+        padding: 2rem 0;
+        border-radius: 25px;
+        background-color: #FFFFFF;
+    }
+
+    .tabla-consultas {
+        margin-top: 2rem; /* Aumenta la separación superior */
+        padding-top: 5rem;
+        border-radius: 25px;
+        background-color: #FFFFFF;
+        margin-bottom: 3rem; /* Agregamos margen inferior */
+        
+        
+    }
+
+   
+    .table {
+        width: 100%; 
+    }
+
+    .table td, .table th {  
+        vertical-align: middle;
+        font-size: 1.1rem; 
+      }
+
+    
+    .table tr {
+       height: 4rem; 
+    }
+
+
+</style>
+
+<div class="container">
+    @*  <h1 class="text-center mb-4">Pasar Asistencias del Día</h1> *@
+
+
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+
+
+    <div class="row align-items-center p-4 mt-5 mb-2 seccion-filtros">
+        <!-- Campo de selección de fecha -->
+        <div class="col-md-4">
+            <label for="datepicker" class="form-label">Listado por fecha</label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-calendar"></i>
+                </span>
+                <input type="date" onchange="ObtenerConsultasPorDia()" class="form-control" id="datepicker" />
+            </div>
+        </div>
+
+        <!-- Campo de búsqueda por nombre de usuario -->
+        <div class="col-md-6">
+            <label for="searchBox" class="form-label">Búsqueda por nombre de usuario</label>
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control" id="searchBox2" placeholder="Todos" />
+            </div>
+        </div>
+    </div>
+
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div id="userList">
+
+            <table class="table table-borderless text-center align-middle tabla-consultas">
+                <thead class="thead-dark p-3">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Nombre del Técnico</th>
+                        <th>Hora de inicio</th>
+                        <th>Hora fin</th>
+                        <th>Asistencia Usuario</th>                   
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var consulta in Model)
+                    {
+                        <tr>
+                            <td>@consulta.Fecha_Consulta?.ToString("dd/MM/yyyy")</td>
+                            <td>@consulta.NombreUsuario</td>
+                            <td>@consulta.Nombre_empleado</td>
+                            <td><div class="time-pill">@consulta.Hora_inicio</div></td>
+                            <td><div class="time-pill">@consulta.Hora_fin</div></td>
+                            <td class="texto-asiste">
+                                @if (consulta.Asistencia_usuario_recepcion == "")
+                                {
+
+                                    <!-- Ícono de check para confirmar asistencia -->
+                                    <a href="javascript:void(0);"
+                                      class="text-danger mx-2"
+                                                  onclick="actualizarAsistenciaUsuario('@consulta.ID_Usuario' , 'Usuario', 'No Asiste')">
+                                      <i class="bi bi-x-circle"></i>
+                                    </a>
+                                    <!-- SVG de cruz para editar asistencia -->
+                                    <a href="javascript:void(0);"
+                                       class="text-success mx-2"
+                                                    onclick="actualizarAsistenciaUsuario('@consulta.ID_Usuario', 'Usuario', 'Asiste')">
+                                        <i class="bi bi-check2-circle"></i>
+                                    </a>
+                                }
+                                else
+                                {
+                                    @if (consulta.Asistencia_usuario_recepcion == "Asiste")
+                                    {
+                                        <span class="estado-asiste">@consulta.Asistencia_usuario_recepcion</span>
+                                    }
+                                    else if (consulta.Asistencia_usuario_recepcion == "No asiste")
+                                    {
+                                        <span class="estado-no-asiste">@consulta.Asistencia_usuario_recepcion</span>
+                                    }else
+                                    {
+
+                                                    <!-- Ícono de check para confirmar asistencia -->
+                                                    <a href="javascript:void(0);"
+                                                      class="text-danger mx-2"
+                                                                  onclick="actualizarAsistenciaUsuario('@consulta.ID_Usuario' , 'Usuario', 'No Asiste')">
+                                                      <i class="bi bi-x-circle"></i>
+                                                    </a>
+                                                    <!-- SVG de cruz para editar asistencia -->
+                                                    <a href="javascript:void(0);"
+                                                       class="text-success mx-2"
+                                                                    onclick="actualizarAsistenciaUsuario('@consulta.ID_Usuario', 'Usuario', 'Asiste')">
+                                                        <i class="bi bi-check2-circle"></i>
+                                                    </a> 
+
+                                    }
+
+                        }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+    }
+
+
+</div>
+
+
+
+
+<div class="modal" id="modalAsistencia" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Actualizar Asistencia</h5>
+                <button type="button" class="close" onclick="closeModalAsistencia()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAsistencia">
+                    <input type="hidden" id="consultaID" name="ID">
+
+                    <div class="form-group mb-3">
+                        <label for="asistenciaUsuario">Asistencia Usuario</label>
+                        <select class="form-control" id="asistenciaUsuario" name="Asistencia_usuario_recepcion">
+                            <option value="">Seleccione...</option>
+                            <option value="Asiste">Asiste</option>
+                            <option value="No Asiste">No Asiste</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="motivoInasistencia">Motivo de Inasistencia</label>
+                        <textarea class="form-control" id="motivoInasistencia" name="Motivo_inasistencia" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModalAsistencia()">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="confirmarAsistencia()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    /*Abrir Modal Asistencias*/
+
+    function abrirModalAsistencia(button) {
+        var id = $(button).data('id');
+        var asistenciaUsuario = $(button).data('asistencia-usuario');
+        var asistenciaTecnico = $(button).data('asistencia-tecnico');
+        var motivoInasistencia = $(button).data('motivo-inasistencia');
+        document.getElementById('consultaID').value = id;
+        document.getElementById('asistenciaUsuario').value = asistenciaUsuario || '';
+        document.getElementById('motivoInasistencia').value = motivoInasistencia || '';
+
+        $('#modalAsistencia').modal('show');
+    }
+
+    function mostrarLoader() {
+        document.getElementById('loaderOverlay').style.visibility = 'visible'; // Mostrar el loader
+    }
+
+    function ocultarLoader() {
+        document.getElementById('loaderOverlay').style.visibility = 'hidden'; // Ocultar el loader
+    }
+
+ 
+    /*Cerrar Modal Asistencias*/
+    function closeModalAsistencia() {
+        var modal = document.getElementById("modalAsistencia");
+        modal.style.display = "none";
+    }
+
+    /*Filtro de busqueda por nombre*/
+    document.getElementById("searchBox2").addEventListener("keyup", function () {
+        var filter = this.value.toLowerCase();
+        var users = document.querySelectorAll("#userList tbody tr");
+
+        users.forEach(function (user) {
+            var textContent = user.textContent.toLowerCase(); // Obtener todo el contenido de texto de la fila
+            if (textContent.includes(filter)) {
+                user.style.display = ""; // Mostrar si coincide
+            } else {
+                user.style.display = "none"; // Ocultar si no coincide
+            }
+        });
+    });
+
+
+
+    function formatearFecha(fecha) {
+
+        let spliteo = fecha.split("-");
+
+        let fechaFinal = spliteo[2] + "-" + spliteo[1] + "-" + spliteo[0];
+
+        return fechaFinal;
+
+
+    }
+
+    /*Filtro de busqueda por fecha */
+
+    function ObtenerConsultasPorDia() {
+        console.log('Obteniendo consultas...');
+
+        const datepicker = document.getElementById('datepicker');
+        const fechaFrontend = datepicker.value;
+
+        console.log(fechaFrontend);
+
+        mostrarLoader();
+
+        $.ajax({
+            url: `/Consultas/ObtenerConsultasPorDiaFran?fecha=${fechaFrontend}`,
+            type: 'GET',
+            success: function (response) {
+                ocultarLoader();
+                console.log(response);
+                if (response.success) {
+                    actualizarTablaConsultas(response.data);
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message)
+                    console.error(response.message, `la fecha ${fechaFrontend} no tiene formato requerido`);
+                }
+            },
+            error: function (error) {
+                ocultarLoader();
+                console.error('Error al buscar consulta.', error);
+                toastr.error('Error al obtener las consultas por servidor.');
+            }
+
+        });
+
+    }
+
+
+    /*Actualizar tabla consultas*/
+    function actualizarTablaConsultas(consultas) {
+    console.log('Actualizando tabla con consultas:', consultas); // Debug
+
+    const tablaBody = document.querySelector('#userList tbody');
+    if (!tablaBody) {
+        console.error('No se encontró la tabla de consultas');
+        return;
+    }
+
+    tablaBody.innerHTML = ''; // Limpiar tabla actual
+
+    consultas.forEach(consulta => {
+        const fila = document.createElement('tr');
+        
+        // Formatear la fecha
+        const fecha = consulta.fecha_Consulta ? 
+            new Date(consulta.fecha_Consulta).toLocaleDateString('es-ES') : '';
+
+        fila.innerHTML = `
+            <td>${fecha}</td>
+            <td>${consulta.nombreUsuario}</td>
+            <td>${consulta.nombre_empleado}</td>
+            <td><div class="time-pill">${consulta.hora_inicio}</div></td>
+            <td><div class="time-pill">${consulta.hora_fin}</div></td>
+            <td class="text-center">${generarColumnasAsistencia(consulta, 'usuario')}</td>
+        `;
+        tablaBody.appendChild(fila);
+    });
+
+    // Reinicializar los event listeners después de actualizar la tabla
+    inicializarEventListeners();
+}
+
+// Función para inicializar los event listeners
+
+function inicializarEventListeners() {
+    document.querySelectorAll('.asistencia-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.getAttribute('data-id');
+            const tipo = this.getAttribute('data-tipo');
+            const estado = this.getAttribute('data-estado');
+            actualizarAsistenciaUsuario(id, tipo, estado);
+        });
+    });
+}
+
+    function generarColumnasAsistencia(consulta, tipo) {
+    console.log('Generando columnas para consulta:', consulta); // Debug
+
+    const esUsuario = tipo === 'usuario';
+    const asistencia = esUsuario ? consulta.asistencia_usuario_recepcion : consulta.asistencia_tecnicos_recepcion;
+    const id = consulta.id;
+
+    // Si no hay asistencia registrada, mostrar botones
+    if (!asistencia) {
+        return `
+            <div class="d-flex justify-content-center">
+                <a href="javascript:void(0);"
+                   class="text-danger mx-2 asistencia-link"
+                   data-id="${id}"
+                   data-tipo="${esUsuario ? 'Usuario' : 'Tecnico'}"
+                   data-estado="No Asiste"
+                   onclick="actualizarAsistenciaUsuario('${id}', '${esUsuario ? 'Usuario' : 'Tecnico'}', 'No Asiste')">
+                    <i class="bi bi-x-circle" style="font-size: 32px;"></i>
+                </a>
+                <a href="javascript:void(0);"
+                   class="text-success mx-2 asistencia-link"
+                   data-id="${id}"
+                   data-tipo="${esUsuario ? 'Usuario' : 'Tecnico'}"
+                   data-estado="Asiste"
+                   onclick="actualizarAsistenciaUsuario('${id}', '${esUsuario ? 'Usuario' : 'Tecnico'}', 'Asiste')">
+                    <i class="bi bi-check2-circle" style="font-size: 32px;"></i>
+                </a>
+            </div>`;
+    } else {
+        // Si ya hay asistencia registrada, mostrar el estado
+        const esAsiste = asistencia === 'Asiste';
+        return `
+            <div class="d-flex justify-content-center">
+                <span class="${esAsiste ? 'estado-asiste' : 'estado-no-asiste'}">
+                    ${asistencia}
+                </span>
+            </div>`;
+    }
+}
+
+
+function actualizarAsistenciaUsuario(id, tipo, estado) {
+    console.log('=== Inicio actualizarAsistenciaUsuario ===');
+    console.log('Parámetros:', { id, tipo, estado });
+
+    $.ajax({
+        url: '/Consultas/ActualizarAsistenciaPut',
+        type: 'POST',
+        data: { id, tipo, estado },
+        success: function(response) {
+            console.log('Respuesta recibida:', response);
+            if (response.success) {
+                console.log('✅ Operación exitosa');
+                toastr.success(response.message);
+               
+            } else {
+                console.log('❌ Error:', response.message);
+                toastr.error(response.message || 'Error al actualizar la asistencia');
+            }
+        },
+        error: function(error) {
+            console.error('⚠️ Error en la petición:', error);
+            toastr.error('Error al actualizar la asistencia');
+        },
+        complete: function() {
+            console.log('=== Fin actualizarAsistenciaUsuario ===\n');
+        }
+    });
+}
+
+@* modal *@
+function confirmarAsistencia() {
+    const id = document.getElementById('consultaID').value;
+    const tipo = document.getElementById('asistenciaUsuario').value;
+    const estado = document.getElementById('motivoInasistencia').value;
+
+    $.ajax({
+        url: '@Url.Action("ActualizarAsistenciaPut", "Consultas")',
+        type: 'POST',
+        data: {
+            id: id,
+            tipo: tipo,
+            estado: estado
+        },
+        success: function(response) {
+
+            if (response.success) {
+                toastr.success('Asistencia actualizada correctamente');
+                // Cerrar el modal
+                var modal = bootstrap.Modal.getInstance(document.getElementById('confirmarAsistenciaModal'));
+                modal.hide();
+                // Recargar la página para mostrar los cambios
+                location.reload();
+            } else {
+                toastr.error(response.message || 'Error al actualizar la asistencia');
+            }
+        },
+        error: function(xhr, status, error) {
+            toastr.error('Error al procesar la solicitud');
+            console.error(error);
+        }
+    });
+}
+
+
+
+</script>
+

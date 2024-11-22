@@ -1,0 +1,127 @@
+﻿<!-- Content Row -->
+<style>
+    .progress-container {
+        width: 100%;
+        background-color: #f3f3f3;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-bar {
+        height: 30px; /* Ajusta la altura como desees */
+        background-color: #36A2EB; /* Color de la barra */
+        transition: width 0.5s ease; /* Transición suave al cambiar el ancho */
+    }
+
+    #sesionesText {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        color: #fff; /* Color del texto */
+        line-height: 30px; /* Para centrar verticalmente el texto */
+    }
+</style>
+<!-- Modal para mostrar la tarea confirmada -->
+
+
+<div id="loader" class="loader" style="display: none;">
+    <div>
+        <img src="~/assets/loading.gif" />
+    </div>
+</div>
+<div class="row justify-content-center">
+
+    <!-- Columna de tareas que ocupa dos filas -->
+    
+
+    <!-- Columna derecha con dos modales, cada uno ocupando una fila -->
+    <div class="col-12 col-lg-6">
+        <div class="row">
+            <!-- Primer modal -->
+            <div class="col-12 mb-3">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div id="consultasDelDia"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Segundo modal -->
+            <div class="col-12 mb-3">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div id="listadoConsultas5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-12 col-lg-6 mb-3">
+        <div class="card shadow " style="height: 100%;">
+            <div class="card-body" id="tareasPendientes">
+                <!-- Aquí se cargarán las tareas directamente -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .panel-heading{
+        background-color:black;
+        color:white;
+        padding:20px;
+    }
+</style>
+<script src="~/js/tareas.js"></script>
+<script>
+    $(document).ready(function () {
+        cargarConsultasDelDia();
+        cargarConsultas();
+        cargarTareas();
+        
+    });
+    function cargarConsultasDelDia() {
+        $.ajax({
+            url: '/Consultas/ListarConsultasPorDiaParaTecnicoLog', // URL que apunta al método ListarConsultasPorDia
+            type: 'GET',
+            success: function (response) {
+                $('#consultasDelDia').html(response);
+                $('#consultasDelDia').show()
+                
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al actualizar la lista de consultas: " + xhr.responseText);
+            }
+        });
+
+    }
+    function cargarConsultas() {
+        $.ajax({
+            url: '/Consultas/ListarProximas5ConsultasParaTecnico', // URL que apunta al método ListarConsultasPorDia
+            type: 'GET',
+            success: function (response) {
+                $('#listadoConsultas5').html(response); // Actualiza el contenido de la vista parcial
+                $('#listadoConsultas5').show();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error al actualizar la lista de consultas: " + xhr.responseText);
+            }
+        });
+
+    }
+    function cargarTareas() {
+        $.ajax({
+            url: '/Tareas/ListarTareasDelUsuario',
+            type: 'GET',
+            success: function (response) {
+                $('#tareasPendientes').html(response);
+                $('#tareasPendientes').show(); // Mostrar directamente en el contenedor del panel
+            },
+            error: function (xhr) {
+                console.error("Error al cargar las tareas: " + xhr.responseText);
+            }
+        });
+    }
+
+</script>
